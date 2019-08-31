@@ -9,9 +9,7 @@ main =
 
 -- MODEL
 
-type alias Model = {
-  date = 
-}
+type alias Model = Int
 
 init : Model
 init =

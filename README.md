@@ -7,6 +7,10 @@ It also lets you add some notes.
 
 This is an (elm)[https://elm-lang.org/] project. (Start Here)[https://guide.elm-lang.org/].
 
-### Start a Server
+### Start a local Server
 
 `elm reactor`
+
+### Install packages
+
+`elm install elm/time`
