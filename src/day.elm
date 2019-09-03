@@ -1,10 +1,7 @@
--- The url to this page should be /yyyy/mm/dd
 import Browser
-import Html exposing (..)
-import Html.Attributes exposing(..)
+import Html exposing (Html, button, div, text)
+import Html.Events exposing (onClick)
 
-import Date
-import Time exposing (Month(..))
 
 main =
   Browser.sandbox { init = init, update = update, view = view }
@@ -12,14 +9,11 @@ main =
 
 -- MODEL
 
-type alias Model = { 
-  date : String
-  }
+type alias Model = Int
 
 init : Model
-init = {
-  date = "2019-01-02"
-  }
+init =
+  0
 
 
 -- UPDATE
@@ -30,15 +24,18 @@ update : Msg -> Model -> Model
 update msg model =
   case msg of
     Increment ->
-     { date = "2019-01-03" }
+      model + 1
 
     Reset ->
-     { date = "2019-01-01" }
+      0      
 
 
 -- VIEW
 
 view : Model -> Html Msg
 view model =
-  div [] 
-    [ p [] [ text model.date ] ]
+  div []
+    [ div [] [ text (String.fromInt model) ]
+    , button [ onClick Increment ] [ text "+" ]
+    , button [ onClick Reset ] [ text "Reset" ]
+    ]
