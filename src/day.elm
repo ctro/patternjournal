@@ -1,5 +1,5 @@
 import Browser
-import Html exposing (Html, button, div, text)
+import Html exposing (Html, button, div, p, text)
 import Html.Events exposing (onClick)
 
 
@@ -18,7 +18,7 @@ init =
 
 -- UPDATE
 
-type Msg = Increment | Reset
+type Msg = Increment | Decrement
 
 update : Msg -> Model -> Model
 update msg model =
@@ -26,8 +26,8 @@ update msg model =
     Increment ->
       model + 1
 
-    Reset ->
-      0      
+    Decrement ->
+      model - 1      
 
 
 -- VIEW
@@ -35,7 +35,9 @@ update msg model =
 view : Model -> Html Msg
 view model =
   div []
-    [ div [] [ text (String.fromInt model) ]
-    , button [ onClick Increment ] [ text "+" ]
-    , button [ onClick Reset ] [ text "Reset" ]
+    [ div [] 
+        [ button [ onClick Increment ] [ String.fromInt model |> text ] 
+        , p [] [ text "Thing1" ] 
+        ]
+    , button [ onClick Decrement ] [ text "<" ]
     ]
