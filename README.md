@@ -9,7 +9,13 @@ This is an (elm)[https://elm-lang.org/] project. (Start Here)[https://guide.elm-
 
 ### Start a local Server
 
-`elm reactor` is a simple dev-focused local server.
+`elm reactor` is a simple dev-focused local server included with Elm.
+It's an easy option but doesn't allow for custom CSS, etc.
+
+We use [elm-live](https://github.com/wking-io/elm-live), an after-market dev server.
+`npm install` to get it. `script/serve` to start it up.
+
+TODO: elm live reloading doesn't work...
 
 ### Install packages
 

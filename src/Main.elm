@@ -1,5 +1,6 @@
 import Browser
-import Html exposing (Html, button, div, p, text)
+import Html exposing (..)
+import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 
 
@@ -35,9 +36,12 @@ update msg model =
 view : Model -> Html Msg
 view model =
   div []
-    [ div [] 
-        [ button [ onClick Increment ] [ String.fromInt model |> text ] 
-        , p [] [ text "Thing1" ] 
+    [ div [ class "nes-container with-title is-centered"] 
+        [ p [ class "title" ] [ text "Thing1"]
+        , p [] 
+          [ 
+           button [ onClick Increment ] [ model |> String.fromInt |> text ]
+          ]
+        , button [ onClick Decrement ] [ text "<" ]
         ]
-    , button [ onClick Decrement ] [ text "<" ]
     ]

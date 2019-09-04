@@ -1,13 +1,3 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <title>Main</title>
-</head>
-
-<body>
-<div id="elm-f0111bc4e658d0f98db96260c16f7e49"></div>
-<script>
 (function(scope){
 'use strict';
 
@@ -4829,6 +4819,15 @@ var elm$html$Html$div = _VirtualDom_node('div');
 var elm$html$Html$p = _VirtualDom_node('p');
 var elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var elm$html$Html$text = elm$virtual_dom$VirtualDom$text;
+var elm$json$Json$Encode$string = _Json_wrap;
+var elm$html$Html$Attributes$stringProperty = F2(
+	function (key, string) {
+		return A2(
+			_VirtualDom_property,
+			key,
+			elm$json$Json$Encode$string(string));
+	});
+var elm$html$Html$Attributes$class = elm$html$Html$Attributes$stringProperty('className');
 var elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -4854,37 +4853,49 @@ var author$project$Main$view = function (model) {
 			[
 				A2(
 				elm$html$Html$div,
-				_List_Nil,
+				_List_fromArray(
+					[
+						elm$html$Html$Attributes$class('nes-container with-title is-centered')
+					]),
 				_List_fromArray(
 					[
 						A2(
-						elm$html$Html$button,
+						elm$html$Html$p,
 						_List_fromArray(
 							[
-								elm$html$Html$Events$onClick(author$project$Main$Increment)
+								elm$html$Html$Attributes$class('title')
 							]),
 						_List_fromArray(
 							[
-								elm$html$Html$text(
-								elm$core$String$fromInt(model))
+								elm$html$Html$text('Thing1')
 							])),
 						A2(
 						elm$html$Html$p,
 						_List_Nil,
 						_List_fromArray(
 							[
-								elm$html$Html$text('Thing1')
+								A2(
+								elm$html$Html$button,
+								_List_fromArray(
+									[
+										elm$html$Html$Events$onClick(author$project$Main$Increment)
+									]),
+								_List_fromArray(
+									[
+										elm$html$Html$text(
+										elm$core$String$fromInt(model))
+									]))
+							])),
+						A2(
+						elm$html$Html$button,
+						_List_fromArray(
+							[
+								elm$html$Html$Events$onClick(author$project$Main$Decrement)
+							]),
+						_List_fromArray(
+							[
+								elm$html$Html$text('<')
 							]))
-					])),
-				A2(
-				elm$html$Html$button,
-				_List_fromArray(
-					[
-						elm$html$Html$Events$onClick(author$project$Main$Decrement)
-					]),
-				_List_fromArray(
-					[
-						elm$html$Html$text('<')
 					]))
 			]));
 };
@@ -5209,12 +5220,3 @@ var author$project$Main$main = elm$browser$Browser$sandbox(
 	{init: author$project$Main$init, update: author$project$Main$update, view: author$project$Main$view});
 _Platform_export({'Main':{'init':author$project$Main$main(
 	elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
-
-var app = Elm.Main.init({ node: document.getElementById("elm-f0111bc4e658d0f98db96260c16f7e49") });
-if (document.getElementById("elm-f0111bc4e658d0f98db96260c16f7e49"))
-{
-  document.getElementById("elm-f0111bc4e658d0f98db96260c16f7e49").innerText = 'This is a headless program, meaning there is nothing to show here.\n\nI started the program anyway though, and you can access it as `app` in the developer console.';
-}
-</script>
-</body>
-</html>
