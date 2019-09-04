@@ -5,7 +5,7 @@ import Html.Events exposing (onClick)
 
 
 main =
-  Browser.element 
+  Browser.document 
     { init = init
     , update = update
     , subscriptions = subscriptions
@@ -20,7 +20,7 @@ type alias Model =
   }
 
 init : () -> (Model, Cmd Msg)
-init _ =
+init flags =
   ( Model 0
   , Cmd.none 
   )
@@ -54,15 +54,20 @@ subscriptions model =
 
 -- VIEW
 
-view : Model -> Html Msg
+view : Model -> Browser.Document Msg
 view model =
-  div []
-    [ div [ class "nes-container with-title is-centered"] 
-        [ p [ class "title" ] [ text "Thing1"]
-        , p [] 
-          [ 
-           button [ onClick Increment ] [ model.count |> String.fromInt |> text ]
+  { title = "PJ Title Control!"
+  , body = 
+    [
+    div []
+      [ div [ class "nes-container with-title is-centered"] 
+          [ p [ class "title" ] [ text "Thing1"]
+          , p [] 
+            [ 
+            button [ onClick Increment ] [ model.count |> String.fromInt |> text ]
+            ]
+          , button [ onClick Decrement ] [ text "<" ]
           ]
-        , button [ onClick Decrement ] [ text "<" ]
-        ]
+      ]
     ]
+  } 

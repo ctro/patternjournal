@@ -4790,7 +4790,7 @@ var elm$json$Json$Decode$errorToStringHelp = F2(
 	});
 var elm$core$Platform$Cmd$batch = _Platform_batch;
 var elm$core$Platform$Cmd$none = elm$core$Platform$Cmd$batch(_List_Nil);
-var author$project$Main$init = function (_n0) {
+var author$project$Main$init = function (flags) {
 	return _Utils_Tuple2(
 		author$project$Main$Model(0),
 		elm$core$Platform$Cmd$none);
@@ -4868,58 +4868,64 @@ var elm$html$Html$Events$onClick = function (msg) {
 		elm$json$Json$Decode$succeed(msg));
 };
 var author$project$Main$view = function (model) {
-	return A2(
-		elm$html$Html$div,
-		_List_Nil,
-		_List_fromArray(
+	return {
+		body: _List_fromArray(
 			[
 				A2(
 				elm$html$Html$div,
-				_List_fromArray(
-					[
-						elm$html$Html$Attributes$class('nes-container with-title is-centered')
-					]),
+				_List_Nil,
 				_List_fromArray(
 					[
 						A2(
-						elm$html$Html$p,
+						elm$html$Html$div,
 						_List_fromArray(
 							[
-								elm$html$Html$Attributes$class('title')
+								elm$html$Html$Attributes$class('nes-container with-title is-centered')
 							]),
 						_List_fromArray(
 							[
-								elm$html$Html$text('Thing1')
-							])),
-						A2(
-						elm$html$Html$p,
-						_List_Nil,
-						_List_fromArray(
-							[
+								A2(
+								elm$html$Html$p,
+								_List_fromArray(
+									[
+										elm$html$Html$Attributes$class('title')
+									]),
+								_List_fromArray(
+									[
+										elm$html$Html$text('Thing1')
+									])),
+								A2(
+								elm$html$Html$p,
+								_List_Nil,
+								_List_fromArray(
+									[
+										A2(
+										elm$html$Html$button,
+										_List_fromArray(
+											[
+												elm$html$Html$Events$onClick(author$project$Main$Increment)
+											]),
+										_List_fromArray(
+											[
+												elm$html$Html$text(
+												elm$core$String$fromInt(model.count))
+											]))
+									])),
 								A2(
 								elm$html$Html$button,
 								_List_fromArray(
 									[
-										elm$html$Html$Events$onClick(author$project$Main$Increment)
+										elm$html$Html$Events$onClick(author$project$Main$Decrement)
 									]),
 								_List_fromArray(
 									[
-										elm$html$Html$text(
-										elm$core$String$fromInt(model.count))
+										elm$html$Html$text('<')
 									]))
-							])),
-						A2(
-						elm$html$Html$button,
-						_List_fromArray(
-							[
-								elm$html$Html$Events$onClick(author$project$Main$Decrement)
-							]),
-						_List_fromArray(
-							[
-								elm$html$Html$text('<')
 							]))
 					]))
-			]));
+			]),
+		title: 'PJ Title Control!'
+	};
 };
 var elm$browser$Browser$External = function (a) {
 	return {$: 'External', a: a};
@@ -5216,8 +5222,8 @@ var elm$url$Url$fromString = function (str) {
 		elm$url$Url$Https,
 		A2(elm$core$String$dropLeft, 8, str)) : elm$core$Maybe$Nothing);
 };
-var elm$browser$Browser$element = _Browser_element;
-var author$project$Main$main = elm$browser$Browser$element(
+var elm$browser$Browser$document = _Browser_document;
+var author$project$Main$main = elm$browser$Browser$document(
 	{init: author$project$Main$init, subscriptions: author$project$Main$subscriptions, update: author$project$Main$update, view: author$project$Main$view});
 _Platform_export({'Main':{'init':author$project$Main$main(
 	elm$json$Json$Decode$succeed(_Utils_Tuple0))(0)}});}(this));
