@@ -7,7 +7,7 @@ It also lets you add some notes.
 
 ### Rails Backend
 
-Rails5 for the backend, using webpacker
+Rails6 for the backend, using webpacker
 
 ### Elm Frontend
 
