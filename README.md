@@ -17,9 +17,6 @@ docker-compose run db bash
 
 ```
 
-- `docker-compose run web bash` for a bash shell in our Docker container. Same for `db`
-- Clint's Ubuntu-For-Windows has `rvm` installed and mimics the Docker setup
-
 ### Rails Backend
 
 Rails6 for the backend, using `webpacker=elm`
