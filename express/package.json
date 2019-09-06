@@ -1,0 +1,15 @@
+{
+  "name": "patternjournal",
+  "version": "1.0.0",
+  "description": "Record event patterns in your life",
+  "repository": "https://github.com/ctro/patternjournal",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ctro",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
