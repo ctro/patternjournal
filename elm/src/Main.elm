@@ -2,18 +2,27 @@ import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
+import Url
+import Router exposing(..)
 
 
+-- MAIN
+
+
+main : Program () Model Msg
 main =
-  Browser.document 
+  Browser.application 
     { init = init
     , update = update
     , subscriptions = subscriptions
     , view = view
+    , onUrlChange = UrlChanged
+    , onUrlRequest = LinkClicked
     }
 
 
 -- MODEL
+
 
 type alias Model = 
   { count : Int
@@ -50,6 +59,13 @@ update msg model =
 subscriptions : Model -> Sub Msg
 subscriptions model =
   Sub.none
+
+
+-- NAVIGATION
+
+urlToRoute : Url.Url -> Maybe Route 
+urlToRoute url =
+  Url.parse myParser url
 
 
 -- VIEW
