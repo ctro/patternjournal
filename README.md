@@ -7,6 +7,17 @@ It also lets you add some notes.
 
 Basically `docker-compose up`.
 
+```bash
+# Help debugging web container
+docker-compose run web bash
+bundle exec rails console
+
+# Help debugging db container
+docker-compose run db bash
+
+```
+
+- `docker-compose run web bash` for a bash shell in our Docker container. Same for `db`
 - Clint's Ubuntu-For-Windows has `rvm` installed and mimics the Docker setup
 
 ### Rails Backend
