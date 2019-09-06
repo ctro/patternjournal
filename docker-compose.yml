@@ -13,7 +13,7 @@ services:
     depends_on:
         - db
     volumes:
-      - ./express:/app/
+      - ./:/app/
     ports:
       - "3000:3000"
     tty: true

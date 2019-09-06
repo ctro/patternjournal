@@ -20,6 +20,9 @@ docker-compose run db bash
 
 Express back-end
 
+TODO
+- [ ] Sequelize: https://sequelize.readthedocs.io/en/1.7.0/articles/express/
+
 ### Elm Frontend
 
 The frontend is in (elm)[https://elm-lang.org/]. (Start Here)[https://guide.elm-lang.org/] to learn about Elm.
