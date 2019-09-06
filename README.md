@@ -19,13 +19,14 @@ docker-compose run db bash
 
 ```
 
-### Express Backend
+### Backend
 
-[Express](https://expressjs.com/en/guide/routing.html) back-end
+- [Express](https://expressjs.com/en/guide/routing.html) server
+- [Passport](http://www.passportjs.org/docs/) for auth
+- [Sequelize](https://sequelize.org/master/manual/getting-started.html) for ORM
 
 TODO
 - [ ] Sequelize: https://sequelize.readthedocs.io/en/1.7.0/articles/express/
-- [ ] Passport.js
 - [ ] Elm/Express WebSockets, or JEEZUS, Svelte
 
 ### Elm Frontend
