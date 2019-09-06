@@ -1,0 +1,28 @@
+version: "3"
+
+volumes:
+  postgres-data:
+
+services:
+
+  web:
+    build:
+      context: . 
+      dockerfile: web.Dockerfile
+    container_name: pj-web
+    depends_on:
+        - db
+    volumes:
+      - ./rails:/app/
+    ports:
+      - "5000:5000"
+    tty: true
+
+  db:
+    image: postgres:11.5
+    container_name: pj-db
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment: []
+    ports:
+      - "5432:5432"

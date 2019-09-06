@@ -3,11 +3,15 @@
 This is a web app that tracks whether things happened on a day or not.
 It also lets you add some notes.
 
-## Setup
+## Docker Setup
+
+Basically `docker-compose up`.
+
+- Clint's Ubuntu-For-Windows has `rvm` installed and mimics the Docker setup
 
 ### Rails Backend
 
-Rails6 for the backend, using webpacker
+Rails6 for the backend, using `webpacker=elm`
 
 ### Elm Frontend
 
