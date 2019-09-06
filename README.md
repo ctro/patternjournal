@@ -7,6 +7,9 @@ It also lets you add some notes.
 
 Basically `docker-compose up`.
 
+Haven't automated creating the database yet, so do that then restart the webserver.
+Create the database `docker-compose exec --user postgres db createdb pj_dev`
+
 ```bash
 # Help debugging web container
 docker-compose run web bash
@@ -18,10 +21,11 @@ docker-compose run db bash
 
 ### Express Backend
 
-Express back-end
+[Express](https://expressjs.com/en/guide/routing.html) back-end
 
 TODO
 - [ ] Sequelize: https://sequelize.readthedocs.io/en/1.7.0/articles/express/
+- [ ] Elm/Express WebSockets
 
 ### Elm Frontend
 
