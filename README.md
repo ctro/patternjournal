@@ -10,16 +10,15 @@ Basically `docker-compose up`.
 ```bash
 # Help debugging web container
 docker-compose run web bash
-bundle exec rails console
 
 # Help debugging db container
 docker-compose run db bash
 
 ```
 
-### Rails Backend
+### Express Backend
 
-Rails6 for the backend, using `webpacker=elm`
+Express back-end
 
 ### Elm Frontend
 
