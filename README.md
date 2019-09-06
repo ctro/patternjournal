@@ -25,7 +25,8 @@ docker-compose run db bash
 
 TODO
 - [ ] Sequelize: https://sequelize.readthedocs.io/en/1.7.0/articles/express/
-- [ ] Elm/Express WebSockets
+- [ ] Passport.js
+- [ ] Elm/Express WebSockets, or JEEZUS, Svelte
 
 ### Elm Frontend
 
