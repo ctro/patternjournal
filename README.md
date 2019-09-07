@@ -25,6 +25,15 @@ docker-compose run db bash
 - [Passport](http://www.passportjs.org/docs/) for auth
 - [Sequelize](https://sequelize.org/master/manual/getting-started.html) for ORM
 
+A console-like experience
+
+```bash
+node
+var models = require('./models/index')
+models.User.create();
+.exit
+```
+
 TODO
 - [ ] Sequelize: https://sequelize.readthedocs.io/en/1.7.0/articles/express/
 - [ ] Elm/Express WebSockets, or JEEZUS, Svelte
