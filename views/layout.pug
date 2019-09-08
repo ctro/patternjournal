@@ -6,6 +6,12 @@ html
     link(rel='stylesheet', href='https://unpkg.com/nes.css@2.2.0/css/nes.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    h1 Pattern Journal
+    a(href='/')
+      h1 Pattern Journal
+    ul
+      li
+        a(href='/patterns') Patterns
+      li
+        a(href='/day/2012/04/20') Day
     block content
     include ./footer.pug
