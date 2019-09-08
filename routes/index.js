@@ -6,7 +6,8 @@ var passport = require('passport');
 router.get('/', 
   passport.authenticate('basic', { session: false }),
   function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  // pass vars to the front
+  res.render('index', { yourname: 'ctro' });
 });
 
 router.get('/logout', function(req, res) {
