@@ -7,7 +7,8 @@ var passport = require('passport');
 var Strategy = require('passport-http').BasicStrategy;
 
 var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users'); Add new routers here
+var patternsRouter = require('./routes/patterns');
+var dayRouter = require('./routes/day');
 
 var app = express();
 
@@ -35,7 +36,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-//app.use('/users', usersRouter); Add new routers here
+app.use('/patterns', patternsRouter);
+app.use('/day', dayRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -34,10 +34,6 @@ models.User.create();
 .exit
 ```
 
-TODO
-- [ ] Sequelize: https://sequelize.readthedocs.io/en/1.7.0/articles/express/
-- [ ] Elm/Express WebSockets, or JEEZUS, Svelte
-
 ### Elm Frontend
 
 The frontend is in (elm)[https://elm-lang.org/]. (Start Here)[https://guide.elm-lang.org/] to learn about Elm.
@@ -49,3 +45,15 @@ It's an easy option but doesn't allow for custom CSS, etc.
 
 We use [elm-live](https://github.com/wking-io/elm-live), an after-market dev server.
 `npm install` to get it. `script/serve` to start it up.
+
+### Routing
+
+Urls are like
+
+```
+/index.html
+/404.html
+/patterns
+/patterns/1
+/day/2019/04/20
+```
