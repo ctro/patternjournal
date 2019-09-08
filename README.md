@@ -51,9 +51,10 @@ We use [elm-live](https://github.com/wking-io/elm-live), an after-market dev ser
 Urls are like
 
 ```
-/index.html
-/404.html
+/
+/404
 /patterns
+/patterns/new
 /patterns/1
 /day/2019/04/20
 ```
