@@ -8,7 +8,10 @@ router.get('/',
   function(req, res, next) {
     var patterns = db.Pattern.findAll()
       .then(patterns => {
-        res.json(patterns);
+        res.render('patterns/index', {
+          patterns: patterns,
+          moment: require('moment')
+        });
       });
 });
 
@@ -28,21 +31,20 @@ router.post('/', (req, res) => {
     color: color
   })
     .then(newPattern => {
-      res.json(newPattern);
+      res.redirect('/patterns');
     })
 });
 
-// GET one pattern by id
-// router.get('/pattern/:id', (req, res) => {
-//   const id = req.params.id;
-//   db.owners.find({
-//     where: { id: id }
-//   })
-//     .then(pattern => {
-//       res.json(pattern);
-//     });
-// });
-
+// DELETE single owner
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  db.Pattern.destroy({
+    where: { id: id }
+  })
+    .then(deletedPattern => {
+      res.redirect('/patterns');
+    });
+});
 
 module.exports = router;
 
@@ -63,16 +65,6 @@ module.exports = router;
 //       });
 //   });
 
-//   // DELETE single owner
-//   app.delete('/owner/:id', (req, res) => {
-//     const id = req.params.id;
-//     db.owners.destroy({
-//       where: { id: id }
-//     })
-//       .then(deletedOwner => {
-//         res.json(deletedOwner);
-//       });
-//   });
-// };
+
 
 

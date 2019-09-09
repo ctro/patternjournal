@@ -2,10 +2,10 @@ extends ../layout
 
 block content
   form(method='POST' action='/patterns')
-    div.form-group
+    div
       label(for='name') Name:
-      input#name.form-control(type='text', placeholder='Name', name='name')
-    div.form-group
+      input(type='text', placeholder='Name', name='name')
+    div
       label(for='color') Color:
-      input#color.form-control(type='text', placeholder='Color', name='color')
-    button.bnt.btn-primary(type='submit') Create
+      input(type='text', placeholder='Color', name='color')
+    button.nes-btn.is-success(type='submit') Create

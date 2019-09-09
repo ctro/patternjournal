@@ -5,12 +5,16 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
 var Strategy = require('passport-http').BasicStrategy;
+var methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
 var patternsRouter = require('./routes/patterns');
 var dayRouter = require('./routes/day');
 
 var app = express();
+
+// HTTP verb overrides
+app.use(methodOverride('_method'))
 
 // Authentication setup
 passport.use(new Strategy(

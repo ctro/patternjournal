@@ -1,0 +1,24 @@
+extends ../layout
+
+block content
+  ul
+    li
+      a(href='/patterns/new') New Pattern
+  table
+    tr
+      th Id
+      th Name
+      th Color
+      th Created
+      th Updated
+      th Actions
+    each pattern in patterns
+      tr
+        td= pattern.id
+        td= pattern.name
+        td= pattern.color
+        td= moment(pattern.updatedAt).format('LLLL')
+        td= moment(pattern.updatedAt).format('LLLL')
+        td
+          form(method='POST' action=`/patterns/${pattern.id}?_method=DELETE`)
+            button.nes-btn.is-error(type='submit' onclick='return confirm("Are you sure?")') Delete
