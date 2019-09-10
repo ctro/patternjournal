@@ -3,6 +3,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var methodOverride = require('method-override');
+var dotenv = require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var patternsRouter = require('./routes/patterns');
@@ -13,7 +14,9 @@ var dayRouter = require('./routes/day');
 var passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth20').Strategy;
 passport.use(new GoogleStrategy({
-  clientID: '299720247908-nftpa0h99gnv1tvmmbdu9o2adi92nbod.apps.googleusercontent.com',
+  clientID: process.env.G_AUTH_CLIENT_ID,
+  clientSecret: process.env.G_AUTH_CLIENT_SECRET,
+  callbackURL: process.env.G_AUTH_CALLBACK
 },
 function(accessToken, refreshToken, profile, cb) {
   User.findOrCreate({ googleId: profile.id }, function (err, user) {
