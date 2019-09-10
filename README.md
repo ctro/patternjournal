@@ -22,8 +22,8 @@ docker-compose run db bash
 ### Backend
 
 - [Express](https://expressjs.com/en/guide/routing.html) server
-- [Passport](http://www.passportjs.org/docs/) for auth
 - [Sequelize](https://sequelize.org/master/manual/getting-started.html) for ORM
+- [Passport](http://www.passportjs.org/packages/passport-google-oauth/) for auth
 
 A console-like experience
 
@@ -34,19 +34,14 @@ models.User.create();
 .exit
 ```
 
-### Elm Frontend
+### Frontend
 
-The frontend is in (elm)[https://elm-lang.org/]. (Start Here)[https://guide.elm-lang.org/] to learn about Elm.
+## Some nice dev tools
 
-#### Start a local Server
+- [http://lvh.me](http://lvh.me) always points to localhost, useful for OAuth setups
+- Ngrok is a secure public tunnel to localhost
 
-`elm reactor` is a simple dev-focused local server included with Elm.
-It's an easy option but doesn't allow for custom CSS, etc.
-
-We use [elm-live](https://github.com/wking-io/elm-live), an after-market dev server.
-`npm install` to get it. `script/serve` to start it up.
-
-### Routing
+## Routing
 
 Urls are like
 

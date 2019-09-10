@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var db = require('../models');
+var passport = require('passport')
 
 // GET patterns
 router.get('/', 
@@ -9,7 +10,8 @@ router.get('/',
 });
 
 /* GET pattern page. */
-router.get('/:year?/:month?/:day?', 
+router.get('/:year?/:month?/:day?',
+  passport.authenticate('google', { scope: ['profile'] }),
   function(req, res, next) {
   // pass vars to the front
   res.render('day/day', {
