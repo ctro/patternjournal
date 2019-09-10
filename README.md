@@ -36,10 +36,24 @@ models.User.create();
 
 ### Frontend
 
+## Debugging
+
+VSCode Debugger should work with the included configuration.
+Use the `Debug` menu. Set breakpoints in the editor.
+
 ## Some nice dev tools
 
 - [http://lvh.me](http://lvh.me) always points to localhost, useful for OAuth setups
 - Ngrok is a secure public tunnel to localhost
+
+
+## Auth for pages
+
+Auth currently has three states
+
+1. `isAuthd` where app loads routers in `app.js` -- applies to entire route
+2. `isAuthd` in a route, at the method level, authenticates one route
+3. `{ user: req.user }` in the render section to pass a potential user, like in the homepage
 
 ## Routing
 

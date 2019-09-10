@@ -6,6 +6,7 @@ var methodOverride = require("method-override");
 var dotenv = require("dotenv");
 var session = require("express-session");
 var db = require("./models");
+var helpers = require("./helpers");
 
 var indexRouter = require("./routes/index");
 var patternsRouter = require("./routes/patterns");
@@ -80,8 +81,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routing
 app.use("/", indexRouter);
-app.use("/patterns", patternsRouter);
-app.use("/day", dayRouter);
+app.use("/patterns", helpers.isAuthd, patternsRouter);
+app.use("/day", helpers.isAuthd, dayRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
