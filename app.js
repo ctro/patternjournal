@@ -3,8 +3,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var passport = require('passport');
-var Strategy = require('passport-http').BasicStrategy;
 var methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
@@ -15,19 +13,6 @@ var app = express();
 
 // HTTP verb overrides
 app.use(methodOverride('_method'))
-
-// Authentication setup
-passport.use(new Strategy(
-  function(username, password, done) {
-    if (username == "u" && password == "p") {
-      return done(null, "MyUserId");
-    }
-    else{
-      return done(false)
-    } 
-
-  }
-));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

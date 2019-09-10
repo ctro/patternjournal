@@ -9,10 +9,6 @@ html
     a(href='/')
       img.logo(src='/images/journal.png')
       h1.logo Pattern Journal
-    ul
-      li
-        a(href='/patterns') Patterns
-      li
-        a(href='/day/2012/04/20') Day
+    include ./menu.pug
     block content
     include ./footer.pug
