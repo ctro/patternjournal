@@ -16,15 +16,17 @@ router.get('/login',
 
 router.get('/loggedin',
   passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
+  function(req, res, next) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    //res.redirect('/');
+    next();
   });
 
 router.get('/logout', function(req, res) {
+  console.log("logged out!");
   req.logout();
   req.session = null;
-  res.send({ message: 'Successful logout'});
+  res.redirect('/');
 });
 
 module.exports = router;
