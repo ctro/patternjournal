@@ -1,9 +1,8 @@
 extends ../layout
 
 block content
-  ul
-    li
-      a(href='/patterns/new') New Pattern
+  div
+    a.nes-btn(href='/patterns/new') New Pattern
   table
     tr
       th Id
@@ -17,8 +16,8 @@ block content
         td= pattern.id
         td= pattern.name
         td= pattern.color
-        td= moment(pattern.updatedAt).format('LLLL')
-        td= moment(pattern.updatedAt).format('LLLL')
+        td= moment(pattern.updatedAt).format('lll')
+        td= moment(pattern.updatedAt).format('lll')
         td
           form(method='POST' action=`/patterns/${pattern.id}?_method=DELETE`)
             button.nes-btn.is-error(type='submit' onclick='return confirm("Are you sure?")') Delete
