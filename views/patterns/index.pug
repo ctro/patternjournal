@@ -3,7 +3,7 @@ extends ../layout
 block content
   div
     a.nes-btn(href='/patterns/new') New Pattern
-  table
+  table.nes-table.is-bordered
     tr
       th Id
       th Name
@@ -15,7 +15,7 @@ block content
       tr
         td= pattern.id
         td= pattern.name
-        td= pattern.color
+        td(style=`background-color:${pattern.color};`)= pattern.color
         td= moment(pattern.updatedAt).format('lll')
         td= moment(pattern.updatedAt).format('lll')
         td

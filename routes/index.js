@@ -9,7 +9,7 @@ router.get('/',
 });
 
 router.get('/login',
-  passport.authenticate('google', { scope: ['profile'] }));
+  passport.authenticate('google', { scope: ['email', 'profile', 'openid'] }));
 
 router.get('/loggedin',
   passport.authenticate('google', { failureRedirect: '/login' }),

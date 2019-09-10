@@ -25,6 +25,14 @@ docker-compose run db bash
 - [Sequelize](https://sequelize.org/master/manual/getting-started.html) for ORM
 - [Passport](http://www.passportjs.org/packages/passport-google-oauth/) for auth
 
+Re-create the database
+
+```bash
+docker-compose up db
+docker-compose exec --user postgres db dropdb pj_dev
+docker-compose exec --user postgres db createdb pj_dev
+```
+
 A console-like experience
 
 ```bash

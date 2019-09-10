@@ -29,7 +29,11 @@ passport.use(
     function(accessToken, refreshToken, profile, cb) {
       db.User.findOrCreate({
         where: { googleId: profile.id },
-        defaults: {}
+        defaults: { 
+          name: profile.displayName,
+          email: profile.emails[0].value,
+          imageUrl: profile.photos[0].value
+        }
       }).then(([user, created]) => {
         return cb(false, user);
       });
