@@ -14,12 +14,12 @@ router.get("/:year?/:month?/:day?", function(req, res, next) {
   var mDate = moment(
     new Date(req.params.year, req.params.month - 1, req.params.day)
   );
-  var mYesterday = mDate.subtract(1, "day");
-  var mTomorrow = mDate.add(1, "day");
+  var mYesterday = moment(mDate).subtract(1, "days");
+  var mTomorrow = moment(mDate).add(1, "days");
 
   // pass shortcuts to req.params values
   res.render("day/day", {
-    formattedDate: mDate.format("lll"),
+    formattedDate: mDate.format("dddd, MMMM Do YYYY"),
     ydayLink: mYesterday.format("YYYY/MM/DD"),
     tmrwLink: mTomorrow.format("YYYY/MM/DD"),
     year: req.params.year,

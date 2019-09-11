@@ -1,6 +1,8 @@
 extends ../layout
 
 block content
-  a(href=`/${ydayLink}`) Yesterday
+  a(href=`/day/${ydayLink}`) Yesterday
+  i.nes-icon.is-large.star
   h1 #{formattedDate}
-  a(href=`/${tmrwLink}`) Tomorrow
+  i.nes-icon.is-large.star
+  a(href=`/day/${tmrwLink}`) Tomorrow
