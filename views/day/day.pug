@@ -1,7 +1,6 @@
 extends ../layout
 
-//- These variagles come from the router
 block content
-  p Year:  #{year}
-  p Month: #{month}
-  p Day:   #{day}
+  a(href=`/${ydayLink}`) Yesterday
+  h1 #{formattedDate}
+  a(href=`/${tmrwLink}`) Tomorrow

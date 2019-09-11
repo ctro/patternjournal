@@ -55,6 +55,9 @@ passport.deserializeUser(function(obj, cb) {
 // 🎉 our app!
 var app = express();
 
+// Our own helpers
+app.use(helpers.addToday);
+
 // Session
 app.set("trust proxy", 1); // trust first proxy
 app.use(

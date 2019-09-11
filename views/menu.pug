@@ -1,9 +1,9 @@
-ul
+ul.nes-list.is-disc
   if(user)
     li
       a(href='/patterns') Patterns
     li
-      a(href='/day/2012/04/20') Day
+      a(href=`/day/${today.year}/${today.month}/${today.day}`) Today
     li
       a(href='/logout') Logout
   else
