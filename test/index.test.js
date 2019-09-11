@@ -3,7 +3,7 @@ const app = require("../app");
 
 // Test index router routes and other general things like 404
 
-describe("Test the root pathh", () => {
+describe("Test the root path", () => {
   test("It should respond to the GET method", async () => {
     const response = await request(app).get("/");
 

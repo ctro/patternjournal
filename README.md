@@ -3,6 +3,8 @@
 This is a web app that tracks whether things happened on a day or not.
 It also lets you add some notes.
 
+[![codecov](https://codecov.io/gh/ctro/patternjournal/branch/master/graph/badge.svg?token=7qIIszMqvI)](https://codecov.io/gh/ctro/patternjournal)
+
 ## TODO
 
 - https://github.com/actions/example-services/blob/master/.github/workflows/postgres-service.yml
