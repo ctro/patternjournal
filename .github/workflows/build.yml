@@ -22,7 +22,7 @@ jobs:
         npm run build --if-present
         npm test
       env:
-        session_secret: yabbadabbadoo
-        g_auth_client_id: XXCLIENTIDXX 
-        g_auth_client_secret: XXCLIENTSECRETXX
-        g_auth_callback: http://example.com
+        SESSION_SECRET: yabbadabbadoo
+        G_AUTH_CLIENT_ID: XXCLIENTIDXX 
+        G_AUTH_CLIENT_SECRET: XXCLIENTSECRETXX
+        G_AUTH_CALLBACK: http://example.com
