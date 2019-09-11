@@ -16,12 +16,11 @@ jobs:
       with:
         node-version: 12
 
-    - name: npm install, build, and test
-      run: |
-        env 
-        npm ci
-        npm run build --if-present
-        npm test
+    - name: npm intall
+      run: npm ci
+    
+    - name: npm test
+      run: npm run test
       env:
         SESSION_SECRET: yabbadabbadoo
         G_AUTH_CLIENT_ID: XXCLIENTIDXX 
