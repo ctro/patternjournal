@@ -26,3 +26,8 @@ jobs:
         G_AUTH_CLIENT_ID: XXCLIENTIDXX 
         G_AUTH_CLIENT_SECRET: XXCLIENTSECRETXX
         G_AUTH_CALLBACK: http://example.com
+
+    - name: Code Coverage
+      uses: codecov/codecov-action@v1.0.2
+      with:
+        token: ${{secrets.CODECOV_TOKEN}} #required
