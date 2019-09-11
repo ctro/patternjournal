@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon --legacy-watch --inspect=0.0.0.0 ./bin/www",
-    "test": "jest"
+    "test": "jest",
+    "test-watch": "jest --watch"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

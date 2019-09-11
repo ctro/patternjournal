@@ -49,6 +49,16 @@ models.User.create();
 
 ### Frontend
 
+## Tests
+
+`npm run test` to run tests.
+
+You can also run a test watcher, I do this in the VSCode terminal: `docker-compose run web npm run test-watch`. It doesn't catch file changes but it does make it easy to re-run the tests.
+
+See [Jest Cheatsheet](https://devhints.io/jest) for assertion, mocking, etc hints.
+
+There is also a VSCode debugger option to debug Jest tests. It launches locally, not in Docker.
+
 ## CI
 
 CI in [Github Actions](https://github.com/ctro/patternjournal/actions).
