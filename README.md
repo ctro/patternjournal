@@ -44,6 +44,11 @@ models.User.create();
 
 ### Frontend
 
+## CI
+
+CI in [Github Actions](https://github.com/ctro/patternjournal/actions).
+Configuration in `.github/workflows/` folder.
+
 ## Debugging
 
 VSCode Debugger should work with the included configuration.
