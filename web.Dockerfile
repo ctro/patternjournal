@@ -9,7 +9,7 @@ WORKDIR /app
 # Now the app
 COPY . .
 
-RUN NODE_ENV=development npm install --global
+RUN NODE_ENV=development npm ci --global
 RUN ls -alh
 
 CMD ["npm", "start"]
