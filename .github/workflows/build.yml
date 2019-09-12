@@ -14,6 +14,9 @@ jobs:
     - name: docker-compose up
       run: docker-compose up --detach
 
+    - name: docker debut
+      run: docker ps
+
     - name: wait for postgres
       run: sleep 15
 
