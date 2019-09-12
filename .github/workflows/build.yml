@@ -1,4 +1,4 @@
-name: PatternJournal Build 
+name: PatternJournal Build and Test
 
 on: [push]
 

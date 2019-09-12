@@ -13,7 +13,6 @@ services:
       dockerfile: web.ci.Dockerfile
     ports:
       - "3000:3000"
-    tty: true
 
   db:
     ports:
