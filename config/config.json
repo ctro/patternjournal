@@ -15,14 +15,6 @@
     "dialect": "postgres",
     "operatorsAliases": false
   },
-  "ci": {
-    "username": "postgres",
-    "password": null,
-    "database": "pj_test",
-    "host": "db",
-    "dialect": "postgres",
-    "operatorsAliases": false
-  },
   "production": {
     "username": "root",
     "password": null,

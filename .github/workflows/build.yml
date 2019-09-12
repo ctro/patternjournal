@@ -13,11 +13,20 @@ jobs:
 
     - name: docker-compose up
       run: docker-compose up --detach
-    
+
+    - name: create test database
+      run: docker-compose exec --user postgres db createdb pj_test
+      env:
+        NODE_ENV: test
+
+    - name: migrate test database
+      run: docker-compose run web npm run migrate
+      env:
+        NODE_ENV: test
+
     - name: run tests
       run: docker-compose run web npm run test
       env:
-        NODE_ENV: ci
         SESSION_SECRET: yabbadabbadoo
         G_AUTH_CLIENT_ID: XXCLIENTIDXX 
         G_AUTH_CLIENT_SECRET: XXCLIENTSECRETXX
