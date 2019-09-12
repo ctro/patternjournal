@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "./node_modules/.bin/nodemon --legacy-watch --inspect=0.0.0.0 ./bin/www",
+    "start": "node ./bin/www",
+    "start-dev": "nodemon --legacy-watch --inspect=0.0.0.0 ./bin/www",
     "test": "jest --coverage",
     "test-watch": "jest --watch",
     "migrate": "sequelize-cli db:migrate",

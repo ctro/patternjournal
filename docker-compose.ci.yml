@@ -1,0 +1,20 @@
+version: "3"
+
+# This .ci.yml file must be manually merged in eg:
+#   docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
+
+# Volumes are not supported in Github Actions
+
+services:
+
+  web:
+    build:
+      context: . 
+      dockerfile: web.ci.Dockerfile
+    ports:
+      - "3000:3000"
+    tty: true
+
+  db:
+    ports:
+      - "5432:5432"

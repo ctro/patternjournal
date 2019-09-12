@@ -1,0 +1,27 @@
+version: "3"
+
+# This .override.yml file is merged into main config automatically, e.g. in dev
+#   Other environments can be manually merged in (which will ignore this file):
+#   `docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach`
+
+volumes:
+  postgres-data:
+
+services:
+
+  web:
+    build:
+      context: . 
+      dockerfile: web.dev.Dockerfile
+    volumes:
+      - ./:/app/
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+    tty: true
+
+  db:
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
