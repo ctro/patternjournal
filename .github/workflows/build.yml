@@ -27,8 +27,8 @@ jobs:
 
     # Passing extra options into Jest
     - name: run tests
-      run: docker-compose run -T web npm run test -- --detectOpenHandles
-      
+      run: docker-compose run -T web npm run test -- --forceExit
+
     # TODO: uncomment me
     # - name: Code Coverage
     #   uses: codecov/codecov-action@v1.0.2
