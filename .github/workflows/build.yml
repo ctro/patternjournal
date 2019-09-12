@@ -14,10 +14,8 @@ jobs:
     - name: docker-compose testing
       run: |
         docker-compose -f docker-compose.yml -f docker-compose.ci.yml build --no-cache 
-        # abort-on-container-exit exposes docker-compose errors
-        #docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
-        docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --abort-on-container-exit
-        ls -alh
+        # --abort-on-container-exit instead of detach exposes docker-compose errors
+        docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
       env:
         NODE_ENV: test
         
