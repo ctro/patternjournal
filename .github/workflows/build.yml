@@ -29,7 +29,12 @@ jobs:
     - name: run tests
       run: docker-compose run -T web npm run test -- --forceExit
 
-    - name: Code Coverage
+    # Tests and code coverage run _in_ the contianer.
+    #  No volumes here, so copy the coverage/ folder back to the host.
+    - name: get code coverage files
+      run: docker cp pj-web:/coverage/. .
+
+    - name: upload code coverage
       uses: codecov/codecov-action@v1.0.2
       with:
         token: ${{secrets.CODECOV_TOKEN}}
