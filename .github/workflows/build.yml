@@ -19,7 +19,7 @@ jobs:
       run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
 
     - name: create test database
-      run: docker exec --user postgres pj-db createdb pj_test
+      run: docker-compose exec --user postgres db createdb pj_test
 
     - name: migrate test database
       run: |
