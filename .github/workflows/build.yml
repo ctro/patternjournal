@@ -13,10 +13,14 @@ jobs:
 
     - name: docker-compose build
       run: docker-compose build --no-cache
+      env:
+        NODE_ENV: test
 
     - name: docker-compose up
       # run: docker-compose up --detach
       run: docker-compose up --abort-on-container-exit
+      env:
+        NODE_ENV: test
 
     - name: wait for postgres
       run: sleep 300 
