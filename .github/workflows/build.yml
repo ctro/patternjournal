@@ -18,6 +18,9 @@ jobs:
     - name: docker-compose up
       run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
 
+    - name: sleep
+      run: sleep 30
+
     - name: create test database
       run: docker-compose exec --user postgres db createdb pj_test
 
