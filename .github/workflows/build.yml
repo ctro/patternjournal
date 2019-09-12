@@ -32,7 +32,9 @@ jobs:
     # Tests and code coverage run _in_ the contianer.
     #  No volumes here, so copy the coverage/ folder back to the host.
     - name: get code coverage files
-      run: docker cp pj-web:/coverage/. .
+      run: |
+        docker-compose run web ls -alh
+        docker cp pj-web:/coverage/. .
 
     - name: upload code coverage
       uses: codecov/codecov-action@v1.0.2
