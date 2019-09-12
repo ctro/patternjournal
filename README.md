@@ -15,7 +15,12 @@ It also lets you add some notes.
 Basically `docker-compose up`.
 
 Haven't automated creating the database yet, so do that then restart the webserver.
-Create the database `docker-compose exec --user postgres db createdb pj_dev`
+Create the databases for dev and test 
+
+```bash
+docker-compose exec --user postgres db createdb pj_dev
+docker-compose exec --user postgres db createdb pj_test
+```
 
 ```bash
 # Help debugging web container
@@ -50,6 +55,10 @@ models.User.create();
 ```
 
 ### Frontend
+
+### Db
+
+Create migrations with `./node_modules/.bin/sequelize-cli migration:generate --name create-user`
 
 ## Tests
 

@@ -5,7 +5,10 @@
   "scripts": {
     "start": "nodemon --legacy-watch --inspect=0.0.0.0 ./bin/www",
     "test": "jest --coverage",
-    "test-watch": "jest --watch"
+    "test-watch": "jest --watch",
+    "migrate": "./node_modules/.bin/sequelize-cli db:migrate",
+    "migrate:reset": "./node_modules/.bin/sequelize-cli db:migrate:undo:all && npm run migrate"
+
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",

@@ -14,7 +14,7 @@ module.exports = {
   addToday: function(req, res, next) {
     var dateObj = new Date();
     var month = dateObj.getUTCMonth() + 1; //months from 1-12
-    var day = dateObj.getUTCDate() -1;
+    var day = dateObj.getUTCDate();
     var year = dateObj.getUTCFullYear();
     res.locals.today = { year: year, month: month, day: day };
     return next();

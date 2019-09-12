@@ -27,14 +27,7 @@ passport.use(
       callbackURL: process.env.G_AUTH_CALLBACK
     },
     function(accessToken, refreshToken, profile, cb) {
-      db.User.findOrCreate({
-        where: { googleId: profile.id },
-        defaults: { 
-          name: profile.displayName,
-          email: profile.emails[0].value,
-          imageUrl: profile.photos[0].value
-        }
-      }).then(([user, created]) => {
+      db.User.doLogin(profile).then(([user, created]) => {
         return cb(false, user);
       });
     }
