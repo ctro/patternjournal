@@ -22,7 +22,9 @@ jobs:
       run: docker exec --user postgres pj-db createdb pj_test
 
     - name: migrate test database
-      run: docker-compose run web npm run migrate
+      run: |
+        echo "$NODE_ENV"      
+        docker-compose run web npm run migrate
       env:
         NODE_ENV: test
 
