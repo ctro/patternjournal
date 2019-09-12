@@ -20,10 +20,7 @@ jobs:
         ls -alh
       env:
         NODE_ENV: test
-        SESSION_SECRET: yabbadabbadoo
-        G_AUTH_CLIENT_ID: XXCLIENTIDXX 
-        G_AUTH_CLIENT_SECRET: XXCLIENTSECRETXX
-        G_AUTH_CALLBACK: http://example.com
+        
 
     # - name: docker-compose build
     #   run: docker-compose build --no-cache
