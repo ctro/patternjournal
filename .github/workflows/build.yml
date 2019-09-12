@@ -20,8 +20,8 @@ jobs:
 
     # Sometimes Postgres isn't ready... we could be smarter.
     - name: wait on postgres
-      run: wait 5
-      
+      run: sleep 5
+
     # -T disables the TTY allocation
     - name: create test database
       run: docker-compose exec -T --user postgres db createdb pj_test
