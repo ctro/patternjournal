@@ -15,7 +15,8 @@ jobs:
       run: docker-compose build --no-cache
 
     - name: docker-compose up
-      run: docker-compose up --detach
+      # run: docker-compose up --detach
+      run: docker-compose up --abort-on-container-exit
 
     - name: wait for postgres
       run: sleep 300 
