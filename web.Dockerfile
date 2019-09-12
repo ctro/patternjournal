@@ -10,5 +10,6 @@ WORKDIR /app
 COPY . .
 
 RUN npm install --global
+RUN ls -alh
 
 CMD ["npm", "start"]
