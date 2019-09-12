@@ -28,7 +28,7 @@ jobs:
     - name: migrate test database
       run: |
         echo "$NODE_ENV"      
-        docker-compose run web npm run migrate
+        NODE_ENV=test docker-compose run web npm run migrate
       env:
         NODE_ENV: test
 
