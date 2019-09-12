@@ -16,6 +16,18 @@ jobs:
       with:
         node-version: 12
 
+    - name: docker-compose up
+      run: docker-compose up --detach
+    
+    - name: run tests
+      run: docker-compose run web npm run test
+      env:
+        NODE_ENV: ci
+        SESSION_SECRET: yabbadabbadoo
+        G_AUTH_CLIENT_ID: XXCLIENTIDXX 
+        G_AUTH_CLIENT_SECRET: XXCLIENTSECRETXX
+        G_AUTH_CALLBACK: http://example.com
+
     - name: npm install
       run: npm ci
     
