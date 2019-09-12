@@ -19,7 +19,7 @@ jobs:
       run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
 
     # Sometimes Postgres isn't ready... we could be smarter.
-    - name: wait on postgres
+    - name: yawn, wait on postgres
       run: sleep 5
 
     # -T disables the TTY allocation
@@ -30,8 +30,11 @@ jobs:
       run: docker-compose run -e NODE_ENV=test web npm run migrate
 
     # Passing extra options into Jest
+    # --detectOpenHandles helps find danglers.
+    # --forceExit to force an exit
+    # --runInBand to run serially
     - name: run tests
-      run: docker-compose run -T web npm run test -- --forceExit
+      run: docker-compose run -T web npm run test -- --runInBand
 
     # Tests and code coverage run _in_ the contianer.
     #  No volumes here, so copy the coverage/ folder back to the host.
