@@ -60,6 +60,8 @@ models.User.create();
 
 Create migrations with `./node_modules/.bin/sequelize-cli migration:generate --name create-user`
 
+Run migrations: `docker-compose run web npm run migrate`
+
 ## Tests
 
 `npm run test` to run tests.

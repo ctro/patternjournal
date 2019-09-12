@@ -4,7 +4,7 @@ WORKDIR /app
 
 # Deps first
 COPY package*.json ./
-RUN npm install
+RUN npm install --global
 
 # Now the app
 COPY . .
