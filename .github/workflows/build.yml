@@ -23,6 +23,8 @@ jobs:
 
     - name: create test database
       run: docker-compose exec --user postgres db createdb pj_test
+      env:
+        COMPOSE_INTERACTIVE_NO_CLI: true
 
     - name: migrate test database
       run: |
