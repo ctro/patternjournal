@@ -17,11 +17,11 @@ jobs:
     - name: docker-compose up
       run: docker-compose up --detach
 
+    - name: wait for postgres
+      run: sleep 300 
+
     - name: docker debut
       run: docker ps
-
-    - name: wait for postgres
-      run: sleep 15
 
     - name: create test database
       run: docker exec --user postgres pj-db createdb pj_test
