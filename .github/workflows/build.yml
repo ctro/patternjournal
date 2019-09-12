@@ -15,7 +15,7 @@ jobs:
       run: |
         docker-compose build --no-cache
         ls -alh
-        ls -alh node_modules
+        ls -alh /app
         docker-compose up --abort-on-container-exit
       env:
         NODE_ENV: test
