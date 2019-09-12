@@ -6,10 +6,10 @@ var db = require("../../models");
 
 describe("/ the root path", () => {
   test("Can get a protected path", async () => {
-    await request(app).get("/days")
+    return await request(app)
+      .get("/days")
       .then(response => {
         expect(response.statusCode).toBe(200);
-      })
+      });
   });
-
 });
