@@ -11,12 +11,6 @@ services:
     build:
       context: . 
       dockerfile: web.ci.Dockerfile
-    # Set fake Auth ENVs directly, for the CI env
-    environment:
-      - SESSION_SECRET=yabbadabbadoo
-      - G_AUTH_CLIENT_ID=XXCLIENTIDXX 
-      - G_AUTH_CLIENT_SECRET=XXCLIENTSECRETXX
-      - G_AUTH_CALLBACK=http://example.com
     ports:
       - "3000:3000"
     tty: true

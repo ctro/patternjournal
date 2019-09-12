@@ -25,13 +25,10 @@ jobs:
     - name: migrate test database
       run: docker-compose run -e NODE_ENV=test web npm run migrate
 
+    # Passing extra options into Jest
     - name: run tests
       run: docker-compose run -T web npm run test -- --detectOpenHandles
-      env:
-        SESSION_SECRET: yabbadabbadoo
-        G_AUTH_CLIENT_ID: XXCLIENTIDXX 
-        G_AUTH_CLIENT_SECRET: XXCLIENTSECRETXX
-        G_AUTH_CALLBACK: http://example.com
+      
     # TODO: uncomment me
     # - name: Code Coverage
     #   uses: codecov/codecov-action@v1.0.2
