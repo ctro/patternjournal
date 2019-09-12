@@ -16,15 +16,12 @@ jobs:
 
     - name: wait for postgres
       run: sleep 15
-      
+
     - name: create test database
       run: docker exec --user postgres pj-db createdb pj_test
-      env:
-        COMPOSE_INTERACTIVE_NO_CLI: true
-        NODE_ENV: test
 
     - name: migrate test database
-      run: docker exec web npm run migrate
+      run: docker exec pj-web npm run migrate
       env:
         NODE_ENV: test
 
