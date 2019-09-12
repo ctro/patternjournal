@@ -15,13 +15,13 @@ jobs:
       run: docker-compose up --detach
 
     - name: create test database
-      run: docker run --network container:db --user postgres createdb pj_test
+      run: docker exec --user postgres pj-db createdb pj_test
       env:
         COMPOSE_INTERACTIVE_NO_CLI: true
         NODE_ENV: test
 
     - name: migrate test database
-      run: docker-compose run web npm run migrate
+      run: docker exec web npm run migrate
       env:
         NODE_ENV: test
 
