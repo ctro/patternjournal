@@ -11,37 +11,18 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
-    - name: docker-compose testing
-      run: |
-        docker-compose -f docker-compose.yml -f docker-compose.ci.yml build --no-cache 
-        # --abort-on-container-exit instead of detach exposes docker-compose errors
-        docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
-      env:
-        NODE_ENV: test
-        
+    - name: docker-compose build
+      run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml build --no-cache
 
-    # - name: docker-compose build
-    #   run: docker-compose build --no-cache
-    #   env:
-    #     NODE_ENV: test
-
-    # - name: docker-compose up
-    #   # run: docker-compose up --detach
-    #   run: docker-compose up --abort-on-container-exit
-    #   env:
-    #     NODE_ENV: test
-
-    # - name: wait for postgres
-    #   run: sleep 300 
-
-    - name: docker debug
-      run: docker ps
+    # --abort-on-container-exit instead of detach exposes docker-compose errors
+    - name: docker-compose up
+      run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
 
     - name: create test database
       run: docker exec --user postgres pj-db createdb pj_test
 
     - name: migrate test database
-      run: docker run --network container:web pj-web npm run migrate
+      run: docker-compose run web npm run migrate
       env:
         NODE_ENV: test
 
