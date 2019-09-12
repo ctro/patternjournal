@@ -13,10 +13,11 @@ jobs:
 
     - name: docker-compose testing
       run: |
-        docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
-        # docker-compose build --no-cache
+        docker-compose -f docker-compose.yml -f docker-compose.ci.yml build --no-cache 
+        # abort-on-container-exit exposes docker-compose errors
+        #docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
+        docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --abort-on-container-exit
         ls -alh
-        #docker-compose up --abort-on-container-exit
       env:
         NODE_ENV: test
 
@@ -31,8 +32,8 @@ jobs:
     #   env:
     #     NODE_ENV: test
 
-    - name: wait for postgres
-      run: sleep 300 
+    # - name: wait for postgres
+    #   run: sleep 300 
 
     - name: docker debug
       run: docker ps
