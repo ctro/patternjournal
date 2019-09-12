@@ -11,6 +11,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v1
 
+    - name: docker-compose build
+      run: docker-compose build --no-cache
+
     - name: docker-compose up
       run: docker-compose up --detach
 
@@ -24,7 +27,7 @@ jobs:
       run: docker exec --user postgres pj-db createdb pj_test
 
     - name: migrate test database
-      run: docker exec pj-web npm run migrate
+      run: docker run --network container:web pj-web npm run migrate
       env:
         NODE_ENV: test
 
