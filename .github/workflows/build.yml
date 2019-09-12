@@ -26,7 +26,7 @@ jobs:
       run: docker-compose run -e NODE_ENV=test web npm run migrate
 
     - name: run tests
-      run: docker-compose run -T web npm run test
+      run: docker-compose run -T web npm run test -- --detectOpenHandles
       env:
         SESSION_SECRET: yabbadabbadoo
         G_AUTH_CLIENT_ID: XXCLIENTIDXX 
