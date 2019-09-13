@@ -70,7 +70,7 @@ You can also run a test watcher, I do this in the VSCode terminal: `docker-compo
 
 See [Jest Cheatsheet](https://devhints.io/jest) for assertion, mocking, etc hints.
 
-There is also a VSCode debugger option to debug Jest tests. It launches locally, not in Docker.
+There is also a VSCode debugger option to debug Jest tests. It launches locally, not in Docker. Docker can't be running while you run this VSCode debugger.
 
 ## CI
 

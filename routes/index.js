@@ -19,7 +19,6 @@ router.get('/loggedin',
   });
 
 router.get('/logout', function(req, res) {
-  console.log("logged out!");
   req.logout();
   req.session.destroy();
   res.redirect('/');

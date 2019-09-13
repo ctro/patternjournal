@@ -5,7 +5,7 @@ var moment = require("moment");
 
 // GET patterns
 router.get("/", function(req, res, next) {
-  res.send("Day index!");
+  res.render("day/index");
 });
 
 /* GET pattern page. */
