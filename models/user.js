@@ -16,16 +16,23 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   // Class Methods
+
+  // I have no idea how this is supposed to work.
   // {profile: {id: <googleId>, displayName: <string>, emails: [<email>], photos: [<url>]}}
   // used in app.js Login configuration, also to mock tests.
   User.doLogin = function(profile) {
-    return User.findOrCreate({
+    
+    return this.findOrCreate({
       where: { googleId: profile.id },
       defaults: {
         name: profile.displayName,
         email: profile.emails[0].value,
         imageUrl: profile.photos[0].value
       }
+    }).then(([theUser, created]) => 
+    {
+      console.log("😎 User did login " + JSON.stringify(theUser));
+      return theUser;
     });
   };
 
