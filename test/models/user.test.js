@@ -6,12 +6,11 @@ describe("User model", () => {
     
 
     return db.User.doLogin(test_helpers.testProfile)
-      .then(([user, created]) => {
-        expect(created).toEqual(true);
+      .then(user => {
         expect(user.name).toEqual("Mr. McTesterson");
         expect(user.googleId).toEqual("--a-fake-google-id--");
         expect(user.email).toEqual("test@test.com");
-        expect(user.imageUrl).toEqual("http://img.com/img.jpg");
+        expect(user.imageUrl).toMatch(/cat-profile.png/);
       });
   });
 });
