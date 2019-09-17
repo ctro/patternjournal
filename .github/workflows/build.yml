@@ -34,19 +34,18 @@ jobs:
     # --forceExit to force an exit
     # --runInBand to run serially
     - name: run tests
-      run: |
-      docker-compose run -T web npm run test -- --forceExit
-      echo '***************************************'
-      docker-compose run web ls -alh
-      echo '***************************************'
-      ls -alh 
-      echo '***************************************'
+      run: docker-compose run -T web npm run test -- --forceExit
+     
 
     # Tests and code coverage run _in_ the contianer.
     #  No volumes here, so copy the coverage/ folder back to the host.
     - name: get code coverage files
       run: |
+        echo '***************************************'
         docker-compose run web ls -alh
+        echo '***************************************'
+        ls -alh 
+        echo '***************************************'
         docker cp pj-web:/coverage/. .
 
     - name: upload code coverage
