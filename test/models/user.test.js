@@ -12,5 +12,11 @@ describe("User model", () => {
         expect(user.email).toEqual("test@test.com");
         expect(user.imageUrl).toMatch(/cat-profile.png/);
       });
+
   });
+
+  // afterAll(async () => {
+  //   console.log("♨♨♨♨♨♨♨♨♨♨♨♨");
+  //   await db.sequelize.close();
+  // });
 });

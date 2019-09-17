@@ -1,15 +1,16 @@
 // Put random helpers here
 module.exports = {
+
   // Middleware to enforce auth and set `user` local
   isAuthd: function(req, res, next) {
     // console.log("🎇🎇🎇ISAUTHD?:" + req.user);
     if (req.user) {
       res.locals.user = req.user;
-      
+      console.log("🟢 Is Authd! " + req.user) 
       return next();
     }
     // Not logged in
-    console.log("🛑 Is Not Authd!")
+    console.log("🛑 Is Not Authd! " + req.user)
     res.redirect("/");
   },
 

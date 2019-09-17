@@ -15,7 +15,7 @@ dotenv.config();
 // 🔒🔒🔒Passport Auth Setup 🔒🔒🔒
 var passport = require("passport");
 
-if (process.env["NODE_ENV=TEST"]) {
+if (process.env.NODE_ENV == 'TEST') {
   //🚨🚨🚨 Watch out we dupe auth in the test env here.
   db.User.doLogin(test_helpers.testProfile).then(fakeUser => {
     console.log("🤥 Fake login for " + fakeUser.name);
