@@ -34,7 +34,9 @@ jobs:
     # --forceExit to force an exit
     # --runInBand to run serially
     - name: run tests
-      run: docker-compose run -T web npm run test -- --forceExit
+      run: |
+        docker-compose run web mkdir /test/coverage 
+        docker-compose run -T web npm run test -- --forceExit
      
 
     # Tests and code coverage run _in_ the contianer.
@@ -42,7 +44,7 @@ jobs:
     - name: get code coverage files
       run: |
         echo '***************************************'
-        docker-compose run web ls test -alh
+        docker-compose run web ls /test -alh
         echo '***************************************'
         ls test -alh 
         echo '***************************************'
