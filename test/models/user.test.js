@@ -1,7 +1,7 @@
 var db = require("../../models");
 var test_helpers = require("../test-helpers.js");
 
-xdescribe("User model", () => {
+describe("User model", () => {
   test("Can create one user, login style", async () => {
     
 
