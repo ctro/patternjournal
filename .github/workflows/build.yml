@@ -35,9 +35,9 @@ jobs:
     # --runInBand to run serially
     - name: run tests
       run: |
-        docker-compose run web mkdir -p /test/coverage 
-        docker-compose run web ls /test 
-        docker-compose run web touch /test/coverage/yep.txt
+        docker-compose run web mkdir -p test/coverage 
+        docker-compose run web ls test 
+        docker-compose run web touch test/coverage/yep.txt
         docker-compose run -T web npm run test -- --forceExit
      
 
