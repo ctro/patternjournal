@@ -7,7 +7,6 @@ var dotenv = require("dotenv");
 var session = require("express-session");
 var db = require("./models");
 var helpers = require("./helpers");
-var test_helpers = require("./test/test-helpers");
 
 //Load dotenv
 dotenv.config();
@@ -37,11 +36,12 @@ app.use(
 );
 
 // 🔒🔒🔒 Passport Auth Setup 🔒🔒🔒
-if (true){ // (process.env.NODE_ENV == "test") {
+if (process.env.NODE_ENV == "test") {
   //🚨🚨🚨 Watch out we dupe auth in the test env here.
-  app.use(helpers.doFakeAuth);
+  const test_helpers = require("./test/test-helpers");
+  app.use(test_helpers.doFakeAuth);
   //🚨🚨🚨
-} else {
+} else { // development, production envs
   const passport = require("passport");
   const googleStrategy = require("passport-google-oauth20").Strategy;
   passport.use(
@@ -74,7 +74,6 @@ if (true){ // (process.env.NODE_ENV == "test") {
   app.use(passport.session());
 }
 // 🔒🔒🔒 END Passport Auth Setup 🔒🔒🔒
-
 
 // HTTP verb overrides
 app.use(methodOverride("_method"));

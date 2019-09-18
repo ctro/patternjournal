@@ -1,8 +1,7 @@
-const db = require('./models');
-const test_helpers = require('./test/test-helpers');
 
 // Put random helpers here
 module.exports = {
+
   // Middleware to enforce auth and set `user` local
   isAuthd: function(req, res, next) {
     if (req.user) {
@@ -13,14 +12,6 @@ module.exports = {
     // Not logged in
     console.log("🛑 Is Not Authd! " + JSON.stringify(req.user));
     res.redirect("/");
-  },
-
-  doFakeAuth: function(req, res, next) {
-    db.User.doLogin(test_helpers.testProfile).then(fakeUser => {
-      console.log("🤥 Did fake login " + JSON.stringify(fakeUser));
-      req.user = fakeUser
-      return next();
-    });
   },
 
   // Middleware to add today.year, month, and day

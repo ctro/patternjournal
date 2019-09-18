@@ -1,7 +1,16 @@
 const db = require("../models");
 // Test Helpers
 module.exports = {
-  //functions go here
+
+  // Fake authentication middleware used in test env.
+  doFakeAuth: function(req, res, next) {
+    db.User.doLogin(test_helpers.testProfile).then(fakeUser => {
+      console.log("🤥 Did fake login " + JSON.stringify(fakeUser));
+      req.user = fakeUser
+      return next();
+    });
+  }
+
 };
 
 // A test profile that matches what we get from Google OAuth

@@ -22,7 +22,6 @@ describe("/ the root path", () => {
 
 // Hmm, these are returning 500 -- they def won't 302 to google.com w/ the mocks
 xdescribe("Google OAuth Login", () => {
-  // Mostly make sure that we don't get a 500 in test env.
   test("GET /login redirects to Google", async () => {
     await request(app)
       .get("/login")
@@ -36,7 +35,7 @@ xdescribe("Google OAuth Login", () => {
   });
 
   // this is the OAuth callback, which does the same auth
-  // handled behind the scenes by Passport. It shouldn't 500.
+  // handled behind the scenes by Passport.
   test("GET /loggedin redirects to Google", async () => {
     await request(app)
       .get("/loggedin")

@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 
   // Class Methods
 
-  // I have no idea how this is supposed to work.
+  // Do Login, which is basically a find-or-create
   // {profile: {id: <googleId>, displayName: <string>, emails: [<email>], photos: [<url>]}}
   // used in app.js Login configuration, also to mock tests.
   User.doLogin = function(profile) {
