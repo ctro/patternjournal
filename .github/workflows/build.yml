@@ -19,7 +19,7 @@ jobs:
       run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
 
     # Sometimes Postgres isn't ready... we could be smarter.
-    - name: yawn, wait on postgres
+    - name: 😴, wait on postgres
       run: sleep 5
 
     # -T disables the TTY allocation
@@ -28,6 +28,15 @@ jobs:
 
     - name: migrate test database
       run: docker-compose run -e NODE_ENV=test web npm run migrate
+
+    - name: test dir and file creation
+      run: |
+        pwd
+        ls -alh
+        mkdir -p test/coverage
+        touch test/coverage/helooo.txt
+        ls -alh test
+        ls -alh test/coverage
 
     # Passing extra options into Jest
     # --detectOpenHandles helps find danglers.
