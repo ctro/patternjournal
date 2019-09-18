@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
       }
     }).then(([theUser, created]) => 
     {
-      console.log("😎 User did login " + JSON.stringify(theUser));
+      console.log("😎 User doing login " + JSON.stringify(theUser));
       return theUser;
     });
   };

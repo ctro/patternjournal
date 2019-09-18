@@ -4,12 +4,11 @@ var db = require("../../models");
 
 // Test index router routes and other general things like 404
 
-xdescribe("/ the root path", () => {
+describe("/ the root path", () => {
   test("GET / with lots of sanity checks", async () => {
     await request(app)
       .get("/")
       .then(response => {
-        console.log(JSON.stringify(response));
         expect(response.statusCode).toBe(200);
         expect(response.charset).toBe("utf-8");
         expect(response.type).toBe("text/html");
@@ -21,6 +20,18 @@ xdescribe("/ the root path", () => {
   });
 });
 
+xdescribe("Fake auth", () => {
+  test("GET /day", async () => {
+    await request(app)
+      .get("/day")
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+        expect(response.text).toMatch(/Day Index/);
+      });
+  });
+});
+
+// Hmm, these are returning 500 -- they def won't 302 to google.com w/ the mocks
 xdescribe("Google OAuth Login", () => {
   // Mostly make sure that we don't get a 500 in test env.
   test("GET /login redirects to Google", async () => {

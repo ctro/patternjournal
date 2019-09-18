@@ -3,6 +3,26 @@ const app = require("../../app");
 const db = require("../../models");
 const test_helpers = require("../test-helpers");
 
+describe("Fake auth", () => {
+  test("GET /day/index", async () => {
+    await request(app)
+      .get("/day")
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+        expect(response.text).toMatch(/Day index/);
+      });
+  });
+
+  test("GET /day/index", async () => {
+    await request(app)
+      .get("/day/2020/04/20")
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+        expect(response.text).toMatch(/Monday, April 20th 2020/);
+      });
+  });
+});
+
 // Test day routes
 
 // // Auxiliary function.
@@ -20,37 +40,37 @@ const test_helpers = require("../test-helpers");
 //     });
 // }
 
-function promisedAuthRequest() {
-  var authenticatedagent2b = request.agent(app);
-  return new Promise((resolve, reject) => {
-    authenticatedagent2b
-      .get("/login")
-      .send(test_helpers.testProfile)
-      .end(function(error, response) {
-        if (error) reject(error);
-        resolve(authenticatedagent2b);
-      });
-  });
-}
+// function promisedAuthRequest() {
+//   var authenticatedagent2b = request.agent(app);
+//   return new Promise((resolve, reject) => {
+//     authenticatedagent2b
+//       .get("/loggedin")
+//       .send(test_helpers.testProfile)
+//       .end(function(error, response) {
+//         if (error) reject(error);
+//         resolve(authenticatedagent2b);
+//       });
+//   });
+// }
 
-xdescribe("/ the root path", () => {
+// describe("/ the root path", () => {
 
- test("hits a private route with superagent authentication", async () => {
-    return promisedAuthRequest().then(authenticatedagent => {
-      return authenticatedagent.get("/day").expect(200).then(res => {
-        expect(res.text).toMatch(/Day index/);
-      });
-    });
-  });
+//  test("hits a private route with fake authentication", async () => {
+//     return promisedAuthRequest().then(authenticatedagent => {
+//       authenticatedagent.get("/day").expect(200).then(res => {
+//         expect(res.text).toMatch(/Day index/);
+//       });
+//     });
+//   });
 
-  test('the data is peanut butter', async () => {
-    const authreq = await promisedAuthRequest();
-    authreq.get("/day")
-    .then(response => {
-      console.log(JSON.stringify(response));
-      expect(response.statusCode).toBe(200);
-    });
-  });
+//   test('the data is peanut butter', async () => {
+//     const authreq = await promisedAuthRequest();
+//     authreq.get("/day")
+//     .then(response => {
+//       expect(response.statusCode).toBe(200);
+//       expect(response.text).toMatch(/Day index/);
+//     });
+//   });
   
 
   // test('A private route', () => {
@@ -79,4 +99,4 @@ xdescribe("/ the root path", () => {
     //     //expect(response.statusCode).toBe(302);
     //   });
   //});
-});
+// });

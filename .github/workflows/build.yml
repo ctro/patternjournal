@@ -31,13 +31,13 @@ jobs:
 
     # Run Tests in the container and pull the coverage data back out
     # Passing extra options into Jest
-    # --detectOpenHandles helps find danglers.
-    # --forceExit to force an exit
-    # --runInBand to run serially
+    # -- --detectOpenHandles helps find danglers.
+    # -- --forceExit to force an exit
+    # -- --runInBand to run serially
     - name: run tests
       run: |
         docker-compose exec -T web mkdir -p test/coverage 
-        docker-compose exec -T web npm run test -- --forceExit
+        docker-compose exec -T web npm run test
         docker cp pj-web:/test/coverage/. .
 
     - name: upload code coverage
