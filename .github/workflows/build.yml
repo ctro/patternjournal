@@ -29,12 +29,7 @@ jobs:
     - name: migrate test database
       run: docker-compose run -e NODE_ENV=test web npm run migrate
 
-    # - name: test dir and file creation
-    #   run: |
-    #     docker-compose exec web mkdir -p test/coverage
-    #     docker-compose exec web touch test/coverage/booooooya.txt
-    #     docker-compose exec web ls -alh test/coverage
-
+    # Run Tests in the container and pull the coverage data back out
     # Passing extra options into Jest
     # --detectOpenHandles helps find danglers.
     # --forceExit to force an exit
@@ -42,23 +37,8 @@ jobs:
     - name: run tests
       run: |
         docker-compose exec -T web mkdir -p test/coverage 
-        docker-compose exec -T web touch test/coverage/yep.txt
-        docker-compose exec -T web ls test/coverage
         docker-compose exec -T web npm run test -- --forceExit
-        docker-compose exec -T web ls -alh test/coverage
         docker cp pj-web:/test/coverage/. .
-     
-
-    # Tests and code coverage run _in_ the contianer.
-    #  No volumes here, so copy the coverage/ folder back to the host.
-    # - name: get code coverage files
-    #   run: |
-    #     echo '***************************************'
-    #     docker-compose run web ls /test -alh
-    #     echo '***************************************'
-    #     ls test/coverage -alh 
-    #     echo '***************************************'
-    #     # docker cp pj-web:/test/coverage/. .
 
     - name: upload code coverage
       uses: codecov/codecov-action@v1.0.2
