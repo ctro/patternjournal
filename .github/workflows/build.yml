@@ -29,14 +29,11 @@ jobs:
     - name: migrate test database
       run: docker-compose run -e NODE_ENV=test web npm run migrate
 
-    - name: test dir and file creation
-      run: |
-        pwd
-        ls -alh
-        mkdir -p test/coverage
-        touch test/coverage/helooo.txt
-        ls -alh test
-        ls -alh test/coverage
+    # - name: test dir and file creation
+    #   run: |
+    #     docker-compose exec web mkdir -p test/coverage
+    #     docker-compose exec web touch test/coverage/booooooya.txt
+    #     docker-compose exec web ls -alh test/coverage
 
     # Passing extra options into Jest
     # --detectOpenHandles helps find danglers.
@@ -44,13 +41,11 @@ jobs:
     # --runInBand to run serially
     - name: run tests
       run: |
-        # docker-compose run web mkdir -p test/coverage 
-        # docker-compose run web ls test 
-        # docker-compose run web touch test/coverage/yep.txt
-        # mkdir test/coverage
-        ls test
-        touch test/coverage/yeesh.txt
+        docker-compose run web mkdir -p test/coverage 
+        docker-compose run web touch test/coverage/yep.txt
+        docker-compose run web ls test/coverage
         docker-compose run -T web npm run test -- --forceExit
+        docker-compose run web ls -alh test/coverage
      
 
     # Tests and code coverage run _in_ the contianer.
