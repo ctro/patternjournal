@@ -4,7 +4,7 @@ module.exports = {
 
   // Fake authentication middleware used in test env.
   doFakeAuth: function(req, res, next) {
-    db.User.doLogin(test_helpers.testProfile).then(fakeUser => {
+    db.User.doLogin(testProfile).then(fakeUser => {
       console.log("🤥 Did fake login " + JSON.stringify(fakeUser));
       req.user = fakeUser
       return next();
