@@ -31,7 +31,10 @@ describe("Pattern pages", () => {
     // POST a new pattern
     await request(app)
       .post("/patterns")
-      .send({ name: "lavender", color: "#b7a5f1" })
+      .send({
+        name: "lavender",
+        color: "#b7a5f1"
+      })
       .then(response => {
         expect(response.statusCode).toBe(302);
         expect(response.headers["location"]).toBe("/patterns");

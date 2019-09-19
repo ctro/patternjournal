@@ -1,7 +1,5 @@
-
 // Put random helpers here
 module.exports = {
-
   // Middleware to enforce auth and set `user` local
   isAuthd: function(req, res, next) {
     if (req.user) {

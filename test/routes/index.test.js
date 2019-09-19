@@ -41,7 +41,7 @@ describe("Google OAuth Login", () => {
       .then(response => {
         console.log(JSON.stringify(response));
         expect(response.statusCode).toBe(302); //redirect
-        expect(response.headers["location"]).toBe('/');
+        expect(response.headers["location"]).toBe("/");
       });
   });
 

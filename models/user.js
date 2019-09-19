@@ -21,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
   // {profile: {id: <googleId>, displayName: <string>, emails: [<email>], photos: [<url>]}}
   // used in app.js Login configuration, also to mock tests.
   User.doLogin = function(profile) {
-    
     return this.findOrCreate({
       where: { googleId: profile.id },
       defaults: {
@@ -29,8 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         email: profile.emails[0].value,
         imageUrl: profile.photos[0].value
       }
-    }).then(([theUser, created]) => 
-    {
+    }).then(([theUser, created]) => {
       console.log("😎 User doing login " + JSON.stringify(theUser));
       return theUser;
     });

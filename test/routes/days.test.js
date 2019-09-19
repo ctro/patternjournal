@@ -20,4 +20,3 @@ describe("Day pages", () => {
       });
   });
 });
-

@@ -1,7 +1,7 @@
 // jest.config.js
-const {defaults} = require('jest-config');
+const { defaults } = require("jest-config");
 module.exports = {
   // ...
-  coverageDirectory: "<rootDir>/test/coverage",
+  coverageDirectory: "<rootDir>/test/coverage"
   // ...
 };

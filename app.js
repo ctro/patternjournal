@@ -41,7 +41,8 @@ if (process.env.NODE_ENV == "test") {
   const test_helpers = require("./test/test_helpers");
   app.use(test_helpers.doFakeAuth);
   //🚨🚨🚨
-} else { // development, production envs
+} else {
+  // development, production envs
   const passport = require("passport");
   const googleStrategy = require("passport-google-oauth20").Strategy;
   passport.use(

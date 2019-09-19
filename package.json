@@ -8,7 +8,8 @@
     "test": "NODE_ENV=test npm run migrate:reset && jest --coverage --forceExit",
     "test-watch": "jest --watch",
     "migrate": "sequelize-cli db:migrate",
-    "migrate:reset": "sequelize-cli db:migrate:undo:all && npm run migrate"
+    "migrate:reset": "sequelize-cli db:migrate:undo:all && npm run migrate",
+    "prettify": "./node_modules/.bin/prettier --write '**/*.js'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "jest": "^24.9.0",
     "nodemon": "^1.19.2",
+    "prettier": "^1.18.2",
     "supertest": "^4.0.2"
   }
 }
