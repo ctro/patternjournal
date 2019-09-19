@@ -8,10 +8,9 @@ volumes:
   postgres-data:
 
 services:
-
   web:
     build:
-      context: . 
+      context: .
       dockerfile: web.dev.Dockerfile
     volumes:
       - ./:/app/

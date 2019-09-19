@@ -6,10 +6,9 @@ version: "3"
 # Volumes are not supported in Github Actions
 
 services:
-
   web:
     build:
-      context: . 
+      context: .
       dockerfile: web.ci.Dockerfile
     ports:
       - "3000:3000"

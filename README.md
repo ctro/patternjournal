@@ -10,7 +10,7 @@ It also lets you add some notes.
 Basically `docker-compose up`.
 
 Haven't automated creating the database yet, so do that then restart the webserver.
-Create the databases for dev and test 
+Create the databases for dev and test
 
 ```bash
 docker-compose exec --user postgres db createdb pj_dev
@@ -81,7 +81,6 @@ Use the `Debug` menu. Set breakpoints in the editor.
 
 - [http://lvh.me](http://lvh.me) always points to localhost, useful for OAuth setups
 - Ngrok is a secure public tunnel to localhost
-
 
 ## Auth for pages
 

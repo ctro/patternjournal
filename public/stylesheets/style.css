@@ -1,4 +1,8 @@
 /* You could include static styles heres */
 
-img.logo { width:90px; } 
-h1.logo { display:inline; }
+img.logo {
+  width: 90px;
+}
+h1.logo {
+  display: inline;
+}

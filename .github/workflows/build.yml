@@ -4,44 +4,43 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v1
 
-    - name: docker-compose build
-      run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml build --no-cache
+      - name: docker-compose build
+        run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml build --no-cache
 
-    # Actually bring the docker-compose cluster up
-    # --abort-on-container-exit instead of detach exposes docker-compose errors
-    - name: docker-compose up
-      run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
+      # Actually bring the docker-compose cluster up
+      # --abort-on-container-exit instead of detach exposes docker-compose errors
+      - name: docker-compose up
+        run: docker-compose -f docker-compose.yml -f docker-compose.ci.yml up --detach
 
-    # Sometimes Postgres isn't ready... we could be smarter.
-    - name: 😴, wait on postgres
-      run: sleep 5
+      # Sometimes Postgres isn't ready... we could be smarter.
+      - name: 😴, wait on postgres
+        run: sleep 5
 
-    # -T disables the TTY allocation
-    - name: create test database
-      run: docker-compose exec -T --user postgres db createdb pj_test
+      # -T disables the TTY allocation
+      - name: create test database
+        run: docker-compose exec -T --user postgres db createdb pj_test
 
-    - name: migrate test database
-      run: docker-compose run -e NODE_ENV=test web npm run migrate
+      - name: migrate test database
+        run: docker-compose run -e NODE_ENV=test web npm run migrate
 
-    # Run Tests in the container and pull the coverage data back out
-    # Passing extra options into Jest
-    # -- --detectOpenHandles helps find danglers.
-    # -- --forceExit to force an exit
-    # -- --runInBand to run serially
-    - name: run tests
-      run: |
-        docker-compose exec -T web mkdir -p test/coverage 
-        docker-compose exec -T web npm run test
-        docker cp pj-web:/test/coverage/. .
+      # Run Tests in the container and pull the coverage data back out
+      # Passing extra options into Jest
+      # -- --detectOpenHandles helps find danglers.
+      # -- --forceExit to force an exit
+      # -- --runInBand to run serially
+      - name: run tests
+        run: |
+          docker-compose exec -T web mkdir -p test/coverage 
+          docker-compose exec -T web npm run test
+          docker cp pj-web:/test/coverage/. .
 
-    - name: upload code coverage
-      uses: codecov/codecov-action@v1.0.2
-      with:
-        token: ${{secrets.CODECOV_TOKEN}}
+      - name: upload code coverage
+        uses: codecov/codecov-action@v1.0.2
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}

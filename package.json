@@ -9,7 +9,7 @@
     "test-watch": "jest --watch",
     "migrate": "sequelize-cli db:migrate",
     "migrate:reset": "sequelize-cli db:migrate:undo:all && npm run migrate",
-    "prettify": "./node_modules/.bin/prettier --write '**/*.js'"
+    "prettify": "./node_modules/.bin/prettier --write '**/*.js' '**/*.md' '**/*.yml' "
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
