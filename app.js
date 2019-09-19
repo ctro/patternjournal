@@ -1,18 +1,18 @@
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var methodOverride = require("method-override");
-var dotenv = require("dotenv");
-var session = require("express-session");
-var db = require("./models");
-var helpers = require("./helpers");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const methodOverride = require("method-override");
+const dotenv = require("dotenv");
+const session = require("express-session");
+const db = require("./models");
+const helpers = require("./helpers");
 
 //Load dotenv
 dotenv.config();
 
 // 🐣🎉 our app!
-var app = express();
+const app = express();
 
 // 🤷‍ these were all generated and seem fine.
 app.use(logger("dev"));
@@ -38,7 +38,7 @@ app.use(
 // 🔒🔒🔒 Passport Auth Setup 🔒🔒🔒
 if (process.env.NODE_ENV == "test") {
   //🚨🚨🚨 Watch out we dupe auth in the test env here.
-  const test_helpers = require("./test/test-helpers");
+  const test_helpers = require("./test/test_helpers");
   app.use(test_helpers.doFakeAuth);
   //🚨🚨🚨
 } else { // development, production envs
@@ -90,8 +90,9 @@ app.use("/patterns", helpers.isAuthd, patternsRouter);
 app.use("/day", helpers.isAuthd, dayRouter);
 app.use("/", indexRouter);
 
-// catch 404 and forward to error handler
+// catch 404 and render
 app.use(function(req, res, next) {
+  res.status(404);
   next(res.render("404"));
 });
 

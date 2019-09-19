@@ -18,11 +18,34 @@ describe("/ the root path", () => {
         expect(response.text).toMatch(/Pattern Journal/);
       });
   });
+
+  test("404 works", async () => {
+    await request(app)
+      .get("/wutisthispage")
+      .then(response => {
+        expect(response.statusCode).toBe(404);
+        expect(response.type).toBe("text/html");
+        expect(response.clientError).toBe(true);
+        expect(response.serverError).toBe(false);
+        expect(JSON.stringify(response.error)).toMatch(/404/);
+        expect(response.text).toMatch(/not found/);
+      });
+  });
 });
 
 // Hmm, these are returning 500 -- they def won't 302 to google.com w/ the mocks
-xdescribe("Google OAuth Login", () => {
-  test("GET /login redirects to Google", async () => {
+describe("Google OAuth Login", () => {
+  test("GET /logout", async () => {
+    await request(app)
+      .get("/logout")
+      .then(response => {
+        console.log(JSON.stringify(response));
+        expect(response.statusCode).toBe(302); //redirect
+        expect(response.headers["location"]).toBe('/');
+      });
+  });
+
+  xtest("GET /login redirects to Google", async () => {
     await request(app)
       .get("/login")
       .then(response => {
@@ -36,7 +59,7 @@ xdescribe("Google OAuth Login", () => {
 
   // this is the OAuth callback, which does the same auth
   // handled behind the scenes by Passport.
-  test("GET /loggedin redirects to Google", async () => {
+  xtest("GET /loggedin redirects to Google", async () => {
     await request(app)
       .get("/loggedin")
       .then(response => {

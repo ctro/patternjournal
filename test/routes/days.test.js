@@ -1,7 +1,7 @@
 const request = require("supertest");
 const app = require("../../app");
 
-describe("Fake auth", () => {
+describe("Day pages", () => {
   test("GET /day", async () => {
     await request(app)
       .get("/day")

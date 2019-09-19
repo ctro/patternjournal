@@ -14,8 +14,7 @@ router.get(
     scope: ["email", "profile", "openid"]
   }),
   function(req, res, next) {
-    // If authenticate function does not redirect, fall back to here.
-    //  this happens e.g. with mock-passport. 
+    // If authenticate function does not work, fall back to here.
     res.redirect("/");
   }
 );
