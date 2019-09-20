@@ -10,4 +10,17 @@ describe("User model", () => {
       expect(user.imageUrl).toMatch(/cat-profile.png/);
     });
   });
+
+  test("CRUD and relationships", async () => {
+    return db.User.create({
+      googleId: "test-g-id",
+      name: "UserTest",
+      email: "t@t.t",
+      imageUrl: "img.jpg"
+    }).then(user => {
+      expect(user.name).toEqual("UserTest");
+      expect(user.email).toEqual("t@t.t");
+      expect(user.imageUrl).toEqual("img.jpg");
+    });
+  });
 });
