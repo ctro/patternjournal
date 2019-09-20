@@ -1,8 +1,7 @@
 var db = require("../../models");
-var test_helpers = require("../test_helpers.js");
 
 describe("Pattern model", () => {
-  test("CRUD and relationships", async () => {
+  test("Pattern CRUD and relationships", async () => {
     return db.Pattern.create(
       {
         name: "bananas",
@@ -20,6 +19,7 @@ describe("Pattern model", () => {
     ).then(pattern => {
       expect(pattern.name).toEqual("bananas");
       expect(pattern.color).toEqual("yellow");
+
       expect(pattern.User.name).toEqual("Big Bird");
       expect(pattern.User.googleId).toEqual("yellow-g-id");
       expect(pattern.User.email).toEqual("b@b.b");
