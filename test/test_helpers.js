@@ -17,6 +17,6 @@ var testProfile = {
   id: "--a-fake-google-id--",
   displayName: "Mr. McTesterson",
   emails: [{ value: "test@test.com" }],
-  photos: [{ value: "http://lvh.me:3000/images/cat-profile.png" }]
+  photos: [{ value: "/images/cat-profile.png" }]
 };
 module.exports.testProfile = testProfile;

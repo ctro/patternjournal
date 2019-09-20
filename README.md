@@ -79,8 +79,19 @@ Use the `Debug` menu. Set breakpoints in the editor.
 
 ## Some nice dev tools
 
-- [http://lvh.me](http://lvh.me) always points to localhost, useful for OAuth setups
-- Ngrok is a secure public tunnel to localhost
+### lvh.me
+
+It just points to localhost.
+[http://lvh.me](http://lvh.me) always points to localhost, useful for OAuth setups
+
+### Ngrok
+
+Need to test on iphone? 
+Ngrok is a secure public tunnel to localhost: https://ngrok.com/download
+
+```bash
+./bin/ngrok.exe http 3000
+```
 
 ## Auth for pages
 
