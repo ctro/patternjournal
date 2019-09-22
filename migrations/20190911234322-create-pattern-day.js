@@ -6,11 +6,11 @@ module.exports = {
       count: Sequelize.INTEGER,
       // Day belongs to many Pattern
       // Pattern belongs to many Day
-      dayId: {
+      DayId: {
         type: Sequelize.INTEGER,
         primaryKey: true
       },
-      patternId: {
+      PatternId: {
         type: Sequelize.INTEGER,
         primaryKey: true
       },

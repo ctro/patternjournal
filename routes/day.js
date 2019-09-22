@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
-var db = require("../models");
 var moment = require("moment");
+var helpers = require("../helpers");
 
 // GET patterns
 router.get("/", function(req, res, next) {
@@ -12,7 +12,7 @@ router.get("/", function(req, res, next) {
 router.get("/:year?/:month?/:day?", function(req, res, next) {
   // Make a friendly date
   var mDate = moment(
-    new Date(req.params.year, req.params.month - 1, req.params.day)
+    helpers.pjDate(req.params.year, req.params.month, req.params.day)
   );
   var mYesterday = moment(mDate).subtract(1, "days");
   var mTomorrow = moment(mDate).add(1, "days");

@@ -20,5 +20,10 @@ module.exports = {
     var year = dateObj.getUTCFullYear();
     res.locals.today = { year: year, month: month, day: day };
     return next();
+  },
+
+  // Javascript Date uses 0-based month index, don't do that.
+  pjDate: function(year, month, day) {
+    return new Date(year, month -1 , day);
   }
 };

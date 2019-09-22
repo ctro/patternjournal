@@ -31,6 +31,18 @@ describe("/ the root path", () => {
         expect(response.text).toMatch(/not found/);
       });
   });
+
+  // If Google auth won't test, we can at least test the 500 route w/ it :)
+  test("500 works", async () => {
+    await request(app)
+      .get("/login")
+      .then(response => {
+        expect(response.statusCode).toBe(500);
+        expect(response.type).toBe("text/html");
+        expect(response.clientError).toBe(false);
+        expect(response.serverError).toBe(true);
+      });
+  });
 });
 
 // Hmm, these are returning 500 -- they def won't 302 to google.com w/ the mocks
