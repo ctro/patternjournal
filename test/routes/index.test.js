@@ -1,6 +1,5 @@
 const request = require("supertest");
 const app = require("../../app");
-var db = require("../../models");
 
 // Test index router routes and other general things like 404
 
@@ -51,6 +50,19 @@ describe("Google OAuth Login", () => {
     await request(app)
       .get("/logout")
       .then(response => {
+        expect(response.statusCode).toBe(302); //redirect
+        expect(response.headers["location"]).toBe("/");
+      });
+  });
+
+
+  // Testing this would test the unauth'd route... but I don't know how. 
+  xtest("Not Logged in", async () => {
+    // JEST MOCKING for req.user
+    const req = jest.fn();
+    await request(app)
+      .get("/day")
+      .then(response => {
         console.log(JSON.stringify(response));
         expect(response.statusCode).toBe(302); //redirect
         expect(response.headers["location"]).toBe("/");
@@ -61,7 +73,6 @@ describe("Google OAuth Login", () => {
     await request(app)
       .get("/login")
       .then(response => {
-        console.log(JSON.stringify(response));
         expect(response.statusCode).toBe(302); //redirect
         expect(response.headers["location"]).toMatch(
           /https:\/\/accounts.google.com/
@@ -75,7 +86,6 @@ describe("Google OAuth Login", () => {
     await request(app)
       .get("/loggedin")
       .then(response => {
-        console.log(JSON.stringify(response));
         expect(response.statusCode).toBe(302); //redirect
         expect(response.headers["location"]).toMatch(
           /https:\/\/accounts.google.com/
