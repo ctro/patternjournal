@@ -36,8 +36,13 @@ app.use(
 );
 
 // 🔒🔒🔒 Passport Auth Setup 🔒🔒🔒
-if (process.env.NODE_ENV == "test") {
+console.log("🍟🍟🍟🍟🍟🍟🍟");
+console.log(process.env.NODE_ENV);
+console.log(process.env.NO_FAKE_AUTH);
+
+if (process.env.NODE_ENV == "test" && process.env.NO_FAKE_AUTH != true) {
   //🚨🚨🚨 Watch out we dupe auth in the test env here.
+  //  Set the NO_FAKE_AUTH env variable as above to NOT do this in test env
   const test_helpers = require("./test/test_helpers");
   app.use(test_helpers.doFakeAuth);
   //🚨🚨🚨
