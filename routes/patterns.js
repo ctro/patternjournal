@@ -18,14 +18,19 @@ router.get("/new", function(req, res, next) {
   res.render("patterns/new", {});
 });
 
-// POST single owner
+// POST
 router.post("/", (req, res) => {
   const name = req.body.name;
   const color = req.body.color;
-  db.Pattern.create({
-    name: name,
-    color: color
-  }).then(newPattern => {
+
+  db.Pattern.create(
+    {
+      name: name,
+      color: color,
+      // 🔮 This user is from the session
+      UserId: req.user.id
+    }
+  ).then(newPattern => {
     res.redirect("/patterns");
   });
 });

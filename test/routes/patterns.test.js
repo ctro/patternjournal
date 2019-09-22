@@ -49,6 +49,21 @@ describe("Pattern pages", () => {
         expect(response.text).toMatch(/#b7a5f1/);
         expect(response.text).toMatch(/Delete/);
       });
+
+    // Test finder after the POST and check user association
+    await db.Pattern.findAll({
+      where: {
+        name: "lavender"
+      },
+      include: [db.User]
+    }).then(patterns => {
+      expect(patterns).not.toBeUndefined;
+      expect(patterns[0].name).toEqual("lavender");
+      expect(patterns[0].User).not.toBeUndefined();
+      expect(patterns[0].User.name).toEqual("Mr. McTesterson");
+      expect(patterns[0].User.email).toEqual("test@test.com");
+      expect(patterns[0].User.imageUrl).toMatch("cat"); //🐱
+    });
   });
 
   test("DELETE /patterns", async () => {
