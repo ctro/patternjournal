@@ -82,12 +82,14 @@ describe("Pattern pages", () => {
     });
   });
 
-  test("DELETE /patterns", async () => {
+  test("DELETE /patterns works and obeys UserId", async () => {
     // Create a one-off pattern for the test
     await db.Pattern.create({
       name: "testpattern",
-      color: "green"
+      color: "green",
+      UserId:1 
     }).then(newPattern => {
+      expect(newPattern.color).toEqual("green");
       request(app)
         .delete(`/patterns/${newPattern.id}`)
         .then(response => {
@@ -95,7 +97,48 @@ describe("Pattern pages", () => {
           expect(response.headers["location"]).toBe("/patterns");
           expect(response.text).not.toMatch(/testpattern/);
           expect(response.text).not.toMatch(/green/);
+
+          // Verify that the Pattern was indeed deleted from the DB
+          return db.Pattern.findAll({where: {id: newPattern.id}});
+
+        })
+        .then(patterns => {
+          expect(patterns.length).toEqual(0);
+          
         });
     });
   });
+
+  test("DELETE /patterns does not work for the wrong user", async () => {
+    // Create a one-off pattern for the test
+    await db.Pattern.create({
+      name: "drink bubbles",
+      color: "pink",
+      User: {
+        googleId: "not-the-user-that-will-make-requests",
+        name: "Mr. Selzer",
+        email: "sparkle.com",
+        imageUrl: "waterloo.jpg"
+      }              
+    }).then(newPattern => {
+      expect(newPattern.color).toEqual("pink");
+      request(app)
+        .delete(`/patterns/${newPattern.id}`)
+        .then(response => {
+          expect(response.statusCode).toBe(302);
+          expect(response.headers["location"]).toBe("/patterns");
+          expect(response.text).not.toMatch(/drink bubbles/);
+          expect(response.text).not.toMatch(/pink/);
+
+          // Verify that the Pattern was NOT deleted from the DB
+          return db.Pattern.findAll({where: {id: newPattern.id}});
+
+        })
+        .then(patterns => {
+          expect(patterns.length).toEqual(1);
+          
+        });
+    });
+  });
+
 });

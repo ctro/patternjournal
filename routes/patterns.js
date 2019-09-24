@@ -41,7 +41,9 @@ router.post("/", (req, res) => {
 router.delete("/:id", (req, res) => {
   const id = req.params.id;
   db.Pattern.destroy({
-    where: { id: id }
+    where: { 
+      id: id,
+      UserId: req.user.id  }
   }).then(deletedPattern => {
     res.redirect("/patterns");
   });
