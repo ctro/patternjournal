@@ -1,11 +1,13 @@
 var express = require("express");
 var router = express.Router();
-var passport = require("passport");
 var db = require("../models");
 
 // GET patterns
 router.get("/", function(req, res, next) {
-  var patterns = db.Pattern.findAll().then(patterns => {
+
+  db.Pattern.findAll({
+    where: { UserId: req.user.id }
+  }).then(patterns => {
     res.render("patterns/index", {
       patterns: patterns,
       moment: require("moment")

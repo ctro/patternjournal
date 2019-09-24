@@ -15,6 +15,22 @@ describe("Pattern pages", () => {
       });
   });
 
+  test("GET /patterns for a User", async () => {
+    // this works because the initial fake user has id 1.
+    await db.Pattern.create({ name: "apples", color: "red", UserId: 1 });
+    await db.Pattern.create({ name: "peaches", color: "peach", UserId: 1 });
+    await db.Pattern.create({ name: "grapes", color: "purple" });
+
+    await request(app)
+      .get("/patterns")
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+        expect(response.text).toMatch(/peaches/);
+        expect(response.text).toMatch(/apples/);
+        expect(response.text).not.toMatch(/grapes/);
+      });
+  });
+
   test("GET /patterns/new", async () => {
     await request(app)
       .get("/patterns/new")
