@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   Day.associate = function(models) {
-    models.Day.belongsToMany(models.Pattern, { through: "PatternDay" });
+    models.Day.belongsToMany(models.Pattern, { through: models.PatternDay });
   };
   return Day;
 };

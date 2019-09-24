@@ -15,7 +15,6 @@ describe("Day model", () => {
       { include: [db.Pattern] }
     ).then(day => {
       expect(day.note).toEqual("Hi");
-      console.log(day.date);
       expect(day.date).toEqual("2020-11-13");
 
       expect(day.getPatterns()).not.toBeUndefined();

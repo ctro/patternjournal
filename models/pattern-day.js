@@ -8,8 +8,8 @@ module.exports = (sequelize, DataTypes) => {
     {}
   );
   PatternDay.associate = function(models) {
-    // models.PatternDay.belongsTo(models.Pattern);
-    // models.PatternDay.belongsTo(models.Day);
+    models.PatternDay.belongsTo(models.Pattern);
+     models.PatternDay.belongsTo(models.Day);
   };
   return PatternDay;
 };

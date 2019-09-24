@@ -1,6 +1,5 @@
 const request = require("supertest");
 const app = require("../../app");
-var db = require("../../models");
 
 // Test index router routes and other general things like 404
 
@@ -57,6 +56,7 @@ describe("Google OAuth Login", () => {
   });
 
   xtest("Not Logged in", async () => {
+    // hard to do because fake user is always logged in
     await request(app)
       .get("/day")
       .then(response => {
