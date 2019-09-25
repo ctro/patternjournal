@@ -11,7 +11,6 @@ describe("Pattern pages", () => {
         expect(response.text).toMatch(/New Pattern/);
         expect(response.text).toMatch(/Name/);
         expect(response.text).toMatch(/Color/);
-        expect(response.text).toMatch(/Actions/);
       });
   });
 
@@ -82,12 +81,143 @@ describe("Pattern pages", () => {
     });
   });
 
+  // EDIT
+  test("GET /patterns/id does not work for wrong User", async () => {
+    return db.Pattern.create(
+      {
+        name: "mandarin",
+        color: "orange",
+        User: {
+          googleId: "orange-g-id",
+          name: "Scrooge McDuck",
+          email: "d@d.d",
+          imageUrl: "duck.jpg"
+        }
+      },
+      {
+        include: [db.User]
+      }
+    )
+      .then(pattern => {
+        expect(pattern.name).toEqual("mandarin");
+        expect(pattern.User.googleId).toEqual("orange-g-id");
+
+        // return the pattern.
+        return pattern;
+      })
+      .then(pattern => {
+        request(app)
+          .get(`/patterns/edit/${pattern.id}`)
+          .then(response => {
+            expect(response.statusCode).toBe(404);
+          });
+      });
+  });
+
+  test("GET /patterns/id works for User", async () => {
+    return db.Pattern.create({
+      name: "peas",
+      color: "green",
+      UserId: 1
+    })
+      .then(pattern => {
+        expect(pattern.name).toEqual("peas");
+
+        // return the pattern.
+        return pattern;
+      })
+      .then(pattern => {
+        request(app)
+          .get(`/patterns/edit/${pattern.id}`)
+          .then(response => {
+            expect(response.statusCode).toBe(200);
+            expect(response.text).toMatch(/method="POST"/);
+            expect(response.text).toMatch(/value="peas"/);
+            expect(response.text).toMatch(/value="green"/);
+          });
+      });
+  });
+
+  // UPDATE
+  test("UPDATE /patterns/id 404s for wrong User", async () => {
+    return db.Pattern.create(
+      {
+        name: "squash",
+        color: "yellow",
+        User: {
+          googleId: "yellow-g-id",
+          name: "Summer Squash",
+          email: "s@s.s",
+          imageUrl: "squash.jpg"
+        }
+      },
+      {
+        include: [db.User]
+      }
+    )
+      .then(pattern => {
+        expect(pattern.name).toEqual("squash");
+
+        // return the pattern.
+        return pattern;
+      })
+      .then(pattern => {
+        request(app)
+          .post(`/patterns/update${pattern.id}`)
+          .send({
+            name: "zucchini",
+            color: "green"
+          })
+          .then(response => {
+            expect(response.statusCode).toBe(404);
+          });
+      });
+  });
+
+  test("UPDATE /patterns/id works for User", async () => {
+    return db.Pattern.create({
+      name: "twix",
+      color: "brown",
+      UserId: 1
+    })
+      .then(pattern => {
+        expect(pattern.name).toEqual("twix");
+
+        // return the pattern.
+        return pattern;
+      })
+      .then(pattern => {
+        request(app)
+          .post(`/patterns/update/${pattern.id}`)
+          .send({
+            name: "snickers",
+            color: "ochre"
+          })
+          .then(response => {
+            expect(response.statusCode).toBe(302);
+            expect(response.headers["location"]).toBe("/patterns");
+
+            return "ok";
+          })
+          .then(msg => {
+            request(app)
+              .get("/patterns")
+              .then(response => {
+                expect(response.text).toMatch(/snickers/);
+                expect(response.text).toMatch(/ochre/);
+                expect(response.text).not.toMatch(/twix/);
+                expect(response.text).not.toMatch(/brown/);
+              });
+          });
+      });
+  });
+
   test("DELETE /patterns works and obeys UserId", async () => {
     // Create a one-off pattern for the test
     await db.Pattern.create({
       name: "testpattern",
       color: "green",
-      UserId:1 
+      UserId: 1
     }).then(newPattern => {
       expect(newPattern.color).toEqual("green");
       request(app)
@@ -99,12 +229,10 @@ describe("Pattern pages", () => {
           expect(response.text).not.toMatch(/green/);
 
           // Verify that the Pattern was indeed deleted from the DB
-          return db.Pattern.findAll({where: {id: newPattern.id}});
-
+          return db.Pattern.findAll({ where: { id: newPattern.id } });
         })
         .then(patterns => {
           expect(patterns.length).toEqual(0);
-          
         });
     });
   });
@@ -119,7 +247,7 @@ describe("Pattern pages", () => {
         name: "Mr. Selzer",
         email: "sparkle.com",
         imageUrl: "waterloo.jpg"
-      }              
+      }
     }).then(newPattern => {
       expect(newPattern.color).toEqual("pink");
       request(app)
@@ -131,14 +259,11 @@ describe("Pattern pages", () => {
           expect(response.text).not.toMatch(/pink/);
 
           // Verify that the Pattern was NOT deleted from the DB
-          return db.Pattern.findAll({where: {id: newPattern.id}});
-
+          return db.Pattern.findAll({ where: { id: newPattern.id } });
         })
         .then(patterns => {
           expect(patterns.length).toEqual(1);
-          
         });
     });
   });
-
 });
