@@ -5,7 +5,8 @@ var db = require("../models");
 // GET index
 router.get("/", function(req, res, next) {
   db.Pattern.findAll({
-    where: { UserId: req.user.id }
+    where: { UserId: req.user.id },
+    order: [['createdAt', 'ASC']]
   }).then(patterns => {
     res.render("patterns/index", {
       patterns: patterns,
