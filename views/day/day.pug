@@ -1,8 +1,14 @@
 extends ../layout
 
 block content
-  a(href=`/day/${ydayLink}`) Yesterday
-  i.nes-icon.is-large.star
-  h1 #{formattedDate}
-  i.nes-icon.is-large.star
-  a(href=`/day/${tmrwLink}`) Tomorrow
+  div
+    a(href=`/day/${ydayLink}`) Yesterday
+    i.nes-icon.is-large.star
+    h1 #{formattedDate}
+    i.nes-icon.is-large.star
+    a(href=`/day/${tmrwLink}`) Tomorrow
+  
+  div
+    ul
+      each pattern in patterns
+        li(style=`background-color:${pattern.color}`)=pattern.name

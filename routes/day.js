@@ -1,12 +1,8 @@
-var express = require("express");
-var router = express.Router();
-var moment = require("moment");
-var helpers = require("../helpers");
-
-// GET patterns
-router.get("/", function(req, res, next) {
-  res.render("day/index");
-});
+const express = require("express");
+const router = express.Router();
+const moment = require("moment");
+const helpers = require("../helpers");
+const db = require("../models");
 
 /* GET pattern page. */
 router.get("/:year?/:month?/:day?", function(req, res, next) {
@@ -17,14 +13,20 @@ router.get("/:year?/:month?/:day?", function(req, res, next) {
   var mYesterday = moment(mDate).subtract(1, "days");
   var mTomorrow = moment(mDate).add(1, "days");
 
-  // pass shortcuts to req.params values
-  res.render("day/day", {
-    formattedDate: mDate.format("dddd, MMMM Do YYYY"),
-    ydayLink: mYesterday.format("YYYY/MM/DD"),
-    tmrwLink: mTomorrow.format("YYYY/MM/DD"),
-    year: req.params.year,
-    month: req.params.month,
-    day: req.params.day
+  db.Pattern.findAll({
+    where: { UserId: req.user.id },
+    order: [["createdAt", "ASC"]]
+  }).then(patterns => {
+    // pass shortcuts to req.params values
+    res.render("day/day", {
+      formattedDate: mDate.format("dddd, MMMM Do YYYY"),
+      ydayLink: mYesterday.format("YYYY/MM/DD"),
+      tmrwLink: mTomorrow.format("YYYY/MM/DD"),
+      year: req.params.year,
+      month: req.params.month,
+      day: req.params.day,
+      patterns: patterns
+    });
   });
 });
 
