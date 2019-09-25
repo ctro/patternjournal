@@ -12,6 +12,7 @@
     "prettify": "./node_modules/.bin/prettier --write '**/*.js' '**/*.md' '**/*.yml' "
   },
   "dependencies": {
+    "bulma": "^0.7.5",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.1.0",
