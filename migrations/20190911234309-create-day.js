@@ -9,6 +9,14 @@ module.exports = {
         allowNull: false,
         autoIncrement: true
       },
+       //belongs_to User
+       UserId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Users", // name of target table
+          key: "id" // id in target table
+        }
+      },
       date: Sequelize.DATEONLY,
       note: Sequelize.TEXT,
       createdAt: {

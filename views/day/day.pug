@@ -2,13 +2,21 @@ extends ../layout
 
 block content
   div
-    a(href=`/day/${ydayLink}`) Yesterday
+    a(href=`/day/${ydayLink}`) Last Day
     i.nes-icon.is-large.star
     h1 #{formattedDate}
     i.nes-icon.is-large.star
-    a(href=`/day/${tmrwLink}`) Tomorrow
+    a(href=`/day/${tmrwLink}`) Next Day
   
   div
-    ul
-      each pattern in patterns
-        li(style=`background-color:${pattern.color}`)=pattern.name
+    each pattern in patterns
+      div(style=`background-color:${pattern.color}`)
+        form(method='POST' action='/day/incrementPatternCounter')
+          p= ((pattern.Days[0] && pattern.Days[0].PatternDay) ? pattern.Days[0].PatternDay.count : 0)
+          p= pattern.name
+          
+          input(type="hidden" name="year" value=`${year}`)
+          input(type="hidden" name="month" value=`${month}`)
+          input(type="hidden" name="day" value=`${day}`)
+          input(type="hidden" name="patternId" value=`${pattern.id}`)
+          button.nes-btn(type='submit') +1

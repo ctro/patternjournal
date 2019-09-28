@@ -61,7 +61,7 @@ describe("PatternDay join", () => {
 
         return db.Day.create({
           date: helpers.pjDate(1978, 12, 18),
-          note: "Today was doulbe good"
+          note: "Today was double good"
         });
       })
       .then(day2 => {

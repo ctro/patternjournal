@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = function(models) {
     models.User.hasMany(models.Pattern, { as: 'Patterns' });
+    models.User.hasMany(models.Day, { as: 'Days' });
   };
 
   // Class Methods

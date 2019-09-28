@@ -6,3 +6,6 @@ img.logo {
 h1.logo {
   display: inline;
 }
+body {
+  background-color: #666
+}
