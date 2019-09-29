@@ -2,21 +2,21 @@ extends ../layout
 
 block content
   div.row(style="padding: 1.25em")
-    div.twelve.columns
+    div.twelve.columns(style="text-align:center")
       i.nes-icon.is-medium.star
       h4(style="display:inline") #{formattedDate}
       i.nes-icon.is-medium.star
   div.row()
-    div.four.columns
+    div.four.columns(style="text-align:center")
       a(href=`/day/${ydayLink}`) Last Day
     div.four.columns &nbsp; 
-    div.four.columns
+    div.four.columns(style="text-align:center")
       a(href=`/day/${tmrwLink}`) Next Day
 
   each pattern, index in patterns
     if(index % 3 === 0)
       | <div class="row" style="margin-top:1.5em">
-    div.four.columns(style=`background-color:${pattern.color}; padding: 1em; border-radius:1em`)
+    div.four.columns(style=`background-color:${pattern.color}; padding: 1em; border-radius:1em; box-shadow:1em 1em #CCC;`)
       form(method='POST' action='/day/incrementPatternCounter')
         p(style="background-color: white; border-radius:1em; padding: 1em")
           = pattern.name
