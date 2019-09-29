@@ -2,10 +2,10 @@ extends ../layout
 
 block content
   form(method='POST' action='/patterns')
-    div
+    div.nes-field
       label(for='name') Name:
       input(type='text', placeholder='Name', name='name')
-    div
+    div.nes-field
       label(for='color') Color:
       input(type='color', value=`#${Math.floor(Math.random()*16777215).toString(16)}`, style='height:50px;width:100px' name='color')
     a.nes-btn(href='/patterns') Cancel

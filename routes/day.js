@@ -28,7 +28,7 @@ router.get("/:year?/:month?/:day?", function(req, res, next) {
   ).then(patterns => {
     // pass shortcuts to req.params values
     res.render("day/day", {
-      formattedDate: mDate.format("dddd, MMMM Do YYYY"),
+      formattedDate: mDate.format("dddd MMMM Do YYYY"),
       ydayLink: mYesterday.format("YYYY/MM/DD"),
       tmrwLink: mTomorrow.format("YYYY/MM/DD"),
       year: req.params.year,

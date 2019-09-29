@@ -1,30 +1,35 @@
 extends ../layout
 
 block content
-  div.row
-    div.one.columns
+  div.row(style="padding: 1.25em")
+    div.twelve.columns
+      i.nes-icon.is-medium.star
+      h4(style="display:inline") #{formattedDate}
+      i.nes-icon.is-medium.star
+  div.row()
+    div.four.columns
       a(href=`/day/${ydayLink}`) Last Day
-    div.ten.columns
-      i.nes-icon.is-medium.star
-      h3(style="display:inline") #{formattedDate}
-      i.nes-icon.is-medium.star
-    div.one.columns
+    div.four.columns &nbsp; 
+    div.four.columns
       a(href=`/day/${tmrwLink}`) Next Day
 
   each pattern, index in patterns
-    if( index % 3 === 0 )
-      | <div class="row">
-    div.four.columns(style=`background-color:${pattern.color}`)
+    if(index % 3 === 0)
+      | <div class="row" style="margin-top:1.5em">
+    div.four.columns(style=`background-color:${pattern.color}; padding: 1em; border-radius:1em`)
       form(method='POST' action='/day/incrementPatternCounter')
-        p= ((pattern.Days[0] && pattern.Days[0].PatternDay) ? pattern.Days[0].PatternDay.count : 0)
-        p= pattern.name
-        
-        input(type="hidden" name="year" value=`${year}`)
-        input(type="hidden" name="month" value=`${month}`)
-        input(type="hidden" name="day" value=`${day}`)
-        input(type="hidden" name="patternId" value=`${pattern.id}`)
-        button.nes-btn(type='submit') +1
-    if (index % 3 === 2 )
+        p(style="background-color: white; border-radius:1em; padding: 1em")
+          = pattern.name
+          = ": " 
+          =((pattern.Days[0] && pattern.Days[0].PatternDay) ? pattern.Days[0].PatternDay.count : 0)
+        p(style="float:right")
+          input(type="hidden" name="year" value=`${year}`)
+          input(type="hidden" name="month" value=`${month}`)
+          input(type="hidden" name="day" value=`${day}`)
+          input(type="hidden" name="patternId" value=`${pattern.id}`)
+          button.nes-btn(type='submit') +1
+    // /div if it's time to get a newline, or if we're out of patterns.
+    if ((index % 3 === 2) || index+1 === patterns.length )
       | </div>
 
           
