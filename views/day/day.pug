@@ -1,22 +1,30 @@
 extends ../layout
 
 block content
-  div
-    a(href=`/day/${ydayLink}`) Last Day
-    i.nes-icon.is-large.star
-    h1 #{formattedDate}
-    i.nes-icon.is-large.star
-    a(href=`/day/${tmrwLink}`) Next Day
-  
-  div
-    each pattern in patterns
-      div(style=`background-color:${pattern.color}`)
-        form(method='POST' action='/day/incrementPatternCounter')
-          p= ((pattern.Days[0] && pattern.Days[0].PatternDay) ? pattern.Days[0].PatternDay.count : 0)
-          p= pattern.name
+  div.row
+    div.one.columns
+      a(href=`/day/${ydayLink}`) Last Day
+    div.ten.columns
+      i.nes-icon.is-medium.star
+      h3(style="display:inline") #{formattedDate}
+      i.nes-icon.is-medium.star
+    div.one.columns
+      a(href=`/day/${tmrwLink}`) Next Day
+
+  each pattern, index in patterns
+    if( index % 3 === 0 )
+      | <div class="row">
+    div.four.columns(style=`background-color:${pattern.color}`)
+      form(method='POST' action='/day/incrementPatternCounter')
+        p= ((pattern.Days[0] && pattern.Days[0].PatternDay) ? pattern.Days[0].PatternDay.count : 0)
+        p= pattern.name
+        
+        input(type="hidden" name="year" value=`${year}`)
+        input(type="hidden" name="month" value=`${month}`)
+        input(type="hidden" name="day" value=`${day}`)
+        input(type="hidden" name="patternId" value=`${pattern.id}`)
+        button.nes-btn(type='submit') +1
+    if (index % 3 === 2 )
+      | </div>
+
           
-          input(type="hidden" name="year" value=`${year}`)
-          input(type="hidden" name="month" value=`${month}`)
-          input(type="hidden" name="day" value=`${day}`)
-          input(type="hidden" name="patternId" value=`${pattern.id}`)
-          button.nes-btn(type='submit') +1

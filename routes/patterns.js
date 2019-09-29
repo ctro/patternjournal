@@ -6,7 +6,7 @@ var db = require("../models");
 router.get("/", function(req, res, next) {
   db.Pattern.findAll({
     where: { UserId: req.user.id },
-    order: [['createdAt', 'ASC']]
+    order: [["createdAt", "ASC"]]
   }).then(patterns => {
     res.render("patterns/index", {
       patterns: patterns,
@@ -30,9 +30,13 @@ router.post("/", (req, res) => {
     color: color,
     // 🔮 This user is from the session
     UserId: req.user.id
-  }).then(newPattern => {
-    res.redirect("/patterns");
-  });
+  })
+    .then(newPattern => {
+      res.redirect("/patterns");
+    })
+    .catch(validation => {
+      res.render("patterns/new", { flashErrors: validation.errors });
+    });
 });
 
 // GET edit

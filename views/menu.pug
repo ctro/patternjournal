@@ -1,12 +1,15 @@
-ul.nes-list.is-disc
-  if(user)
-    li
-      a(href='/patterns') Patterns
-    li
-      a(href=`/day/${today.year}/${today.month}/${today.day}`) Today
-    li
-      a(href='/logout') Logout
-  else
-    li
-      i.nes-icon.google.is-med
-      a(href='/login') Login
+div.row
+  div.ten.columns &nbsp;
+  div.two.columns
+    ul.nes-list.is-disc
+      if(user)
+        li
+          a(href='/patterns') Patterns
+        li
+          a(href=`/day/${today.year}/${today.month}/${today.day}`) Today
+        li
+          a(href='/logout') Logout
+      else
+        li
+          i.nes-icon.google.is-med
+          a(href='/login') Login

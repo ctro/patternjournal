@@ -8,8 +8,9 @@ html
     link(rel='stylesheet', href='/stylesheets/press-start-font.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    include ./header.pug
-   
-    include ./menu.pug
-    block content
-    include ./footer.pug
+    div.container
+      include ./header.pug
+      include ./menu.pug
+      include ./flash.pug
+      block content
+      include ./footer.pug

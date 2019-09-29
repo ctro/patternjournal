@@ -3,8 +3,18 @@ module.exports = (sequelize, DataTypes) => {
   const Pattern = sequelize.define(
     "Pattern",
     {
-      name: DataTypes.STRING,
-      color: DataTypes.STRING
+      name: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { args: true, msg: "Name can't be empty" }
+        }
+      },
+      color: {
+        type: DataTypes.STRING,
+        validate: {
+          notEmpty: { args: true, msg: "Color can't be empty" }
+        }
+      }
     },
     {}
   );

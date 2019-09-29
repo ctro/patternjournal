@@ -81,6 +81,22 @@ describe("Pattern pages", () => {
     });
   });
 
+  test("POST /patterns with errors", async () => {
+    // POST a new pattern
+    await request(app)
+      .post("/patterns")
+      .send({
+        name: "",
+        color: ""
+      })
+      .then(response => {
+        expect(response.statusCode).toBe(200);
+        expect(response.text).toMatch(/Name can't be empty/);
+        expect(response.text).toMatch(/Color can't be empty/);
+      });
+
+  });
+
   // EDIT
   test("GET /patterns/id does not work for wrong User", async () => {
     return db.Pattern.create(
