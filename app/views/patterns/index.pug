@@ -1,0 +1,22 @@
+extends ../layout
+
+block content
+  div
+    a.nes-btn(href='/patterns/new') New Pattern
+  table.nes-table.is-bordered
+    tr
+      th Name
+      th Color
+      th Created
+      th 
+      th 
+    each pattern in patterns
+      tr
+        td= pattern.name
+        td(style=`background-color:${pattern.color};`)= pattern.color
+        td= moment(pattern.createdAt).format('lll')
+        td
+          form(method='POST' action=`/patterns/${pattern.id}?_method=DELETE`)
+            button.nes-btn.is-error(type='submit' onclick='return confirm("Are you sure?")') Delete
+        td
+          a.nes-btn(href=`/patterns/edit/${pattern.id}`) Edit

@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  form(method='POST' action=`/patterns/update/${editPattern.id}`)
+    div
+      label(for='name') Name:
+      input(type='text', name='name' value=`${editPattern.name}`)
+    div
+      label(for='color') Color:
+      input(type='color', value=`${editPattern.color}`, style='height:50px;width:100px' name='color')
+    a.nes-btn(href='/patterns') Cancel
+    button.nes-btn.is-success(type='submit') Update

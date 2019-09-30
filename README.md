@@ -110,5 +110,5 @@ You need an `account.json`, [Instructions](https://www.packer.io/docs/builders/g
 
 Files related to Packer builds are in `image/`
 
-Build the image: `cd image && ./packer.exe build ./image/server.json`
+Build the image: `./image/build.ps1`
 

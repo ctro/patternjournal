@@ -1,4 +1,8 @@
 #! /bin/bash
+
+# exit immediately on error
+set -e
+
 sudo apt-get -y install postgresql postgresql-contrib libpq-dev
 
 # Edit in-place. change md5 to trust
