@@ -1,0 +1,22 @@
+{
+  "builders": [
+    {
+      "type": "googlecompute",
+      "account_file": "account.json",
+      "project_id": "pattern-journal-1568127981392",
+      "source_image_family": "debian-10",
+      "ssh_username": "packer",
+      "zone": "us-west1-a"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "apt.sh",
+        "postgres.sh",
+        "node.sh"
+      ]
+    }
+  ]
+}
