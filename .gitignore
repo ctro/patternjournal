@@ -3,4 +3,7 @@ node_modules
 test/coverage/
 .ngrok.auth
 
-bin/ngrok.exe
+image/account.json
+
+ngrok.exe
+packer.exe

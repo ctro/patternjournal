@@ -5,6 +5,12 @@ It also lets you add some notes.
 
 [![codecov](https://codecov.io/gh/ctro/patternjournal/branch/master/graph/badge.svg?token=7qIIszMqvI)](https://codecov.io/gh/ctro/patternjournal)
 
+## Super high-level reqs
+
+- Debian Buster (10)
+- Node 12
+
+
 ## Docker Setup
 
 Basically `docker-compose up`.
@@ -90,26 +96,19 @@ Need to test on iphone?
 Ngrok is a secure public tunnel to localhost: https://ngrok.com/download
 
 ```bash
-./bin/ngrok.exe http 3000
+./ngrok/ngrok.exe http 3000
 ```
 
-## Auth for pages
+## Production
 
-Auth currently has three states
+### Packer
 
-1. `isAuthd` where app loads routers in `app.js` -- applies to entire route
-2. `isAuthd` in a route, at the method level, authenticates one route
-3. `{ user: req.user }` in the render section to pass a potential user, like in the homepage
+Use [Packer](https://packer.io) to build machine images.
+We run both the server and the database on one small VM.
+We expect `packer.exe` to be in `bin/`
+You need an `account.json`, [Instructions](https://www.packer.io/docs/builders/googlecompute.html)
 
-## Routing
+Files related to Packer builds are in `image/`
 
-Urls are like
+Build the image: `cd image && ./packer.exe build ./image/server.json`
 
-```
-/
-/404
-/patterns
-/patterns/new
-/patterns/1
-/day/2019/04/20
-```

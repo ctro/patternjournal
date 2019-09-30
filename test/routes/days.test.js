@@ -8,7 +8,7 @@ describe("Day pages", () => {
       .get("/day/2020/04/20")
       .then(response => {
         expect(response.statusCode).toBe(200);
-        expect(response.text).toMatch(/Monday, April 20th 2020/);
+        expect(response.text).toMatch(/Monday April 20th 2020/);
 
         // check yesterday/tomorrow links
         expect(response.text).toMatch(/a href="\/day\/2020\/04\/19">Last Day/);
@@ -31,9 +31,8 @@ describe("Day pages", () => {
       .get("/day/2020/04/20")
       .then(response => {
         expect(response.statusCode).toBe(200);
-        expect(response.text).toMatch(/Monday, April 20th 2020/);
+        expect(response.text).toMatch(/Monday April 20th 2020/);
 
-        // check yesterday/tomorrow links
         expect(response.text).toMatch(/a href="\/day\/2020\/04\/19">Last Day/);
         expect(response.text).toMatch(/a href="\/day\/2020\/04\/21">Next Day/);
         expect(response.text).toMatch(/grass/);
@@ -60,11 +59,11 @@ describe("Day pages", () => {
       .get("/day/2020/04/20")
       .then(response => {
         expect(response.statusCode).toBe(200);
-        expect(response.text).toMatch(/Monday, April 20th 2020/);
+        expect(response.text).toMatch(/Monday April 20th 2020/);
 
         // check yesterday/tomorrow links
-        expect(response.text).toMatch(/<p>1<\/p><p>grass<\/p>/);
-        expect(response.text).toMatch(/<p>0<\/p><p>roses<\/p>/);
+        expect(response.text).toMatch(/grass: 1/);
+        expect(response.text).toMatch(/roses: 0/);
       });
   });
 });
