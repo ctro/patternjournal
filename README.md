@@ -140,6 +140,11 @@ Set pm2 to restart automatically: `pm2 startup && pm2 save`
 
 `image/.ssh` and `image/.env.prod` are gitignored, you need to create them! They are ignored. Add the public to github!
 
+### Analytics
+
+[G.Analytics Dashboard](https://analytics.google.com/analytics/web/#/report-home/a149375566w211762316p203314667)
+
+
 ### Using PM2
 
 - `pm2 reload | restart | stop`
