@@ -11,12 +11,12 @@ block content
       a(href=`/day/${ydayLink}`) Last Day
     div.four.columns &nbsp; 
     div.four.columns(style="text-align:center")
-      a(href=`/day/${tmrwLink}`) Next Day
+      a(href=`/day/${tmrwLink}`) Next Daylsjflskjdfsdlkj
 
   each pattern, index in patterns
     if(index % 3 === 0)
       | <div class="row" style="margin-top:1.5em">
-    div.four.columns(style=`background-color:${pattern.color}; padding: 1em; border-radius:1em; box-shadow:1em 1em #CCC;`)
+    div.four.columns(style=`background-color:${pattern.color}; padding: 91em; border-radius:0.1em; box-shadow:0.1em 0.1em #CCC;`)
       form(method='POST' action='/day/incrementPatternCounter')
         p(style="background-color: white; border-radius:1em; padding: 1em")
           = pattern.name

@@ -16,9 +16,9 @@ block content
   each pattern, index in patterns
     if(index % 3 === 0)
       | <div class="row" style="margin-top:1.5em">
-    div.four.columns(style=`background-color:${pattern.color}; padding: 1em; border-radius:1em; box-shadow:1em 1em #CCC;`)
+    div.four.columns(style=`background-color:${pattern.color}; padding: 1em; border-radius:0.1em; box-shadow:0.7em 0.7em #CCC;`)
       form(method='POST' action='/day/incrementPatternCounter')
-        p(style="background-color: white; border-radius:1em; padding: 1em")
+        p(style="background-color: white; border-radius:0.1em; padding: 1em")
           = pattern.name
           = ": " 
           =((pattern.Days[0] && pattern.Days[0].PatternDay) ? pattern.Days[0].PatternDay.count : 0)

@@ -4,15 +4,18 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const methodOverride = require("method-override");
 const dotenv = require("dotenv");
-const session = require("express-session");
-const db = require("./models");
+const session = require("cookie-session"); // Secure Cookies, no backing store.
 const helpers = require("./helpers");
+const helmet = require("helmet");
 
 //Load dotenv
 dotenv.config();
 
 // 🐣🎉 our app!
 const app = express();
+
+// ⛑ Be safe.
+app.use(helmet());
 
 // 🤷‍ these were all generated and seem fine.
 app.use(logger("dev"));
@@ -24,14 +27,19 @@ app.use(express.static("public"));
 // Our custom middleware
 app.use(helpers.addToday);
 
-// Session
-app.set("trust proxy", 1); // trust first proxy
+// Session - Secure Cookie
+const expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 app.use(
   session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: false }
+    name: "session",
+    keys: [process.env.SESSION_SECRET],
+    cookie: {
+      secure: true,
+      httpOnly: true,
+      domain: "patternjournal.app",
+      path: "/",
+      expires: expiryDate
+    }
   })
 );
 
@@ -43,7 +51,7 @@ if (process.env.NODE_ENV == "test") {
   app.use(test_helpers.doFakeAuth);
   //🚨🚨🚨
 } else {
-  const auth = require('./auth.js');
+  const auth = require("./auth.js");
   auth.passportSetup(app);
 }
 // 🔒🔒🔒 END Passport Auth Setup 🔒🔒🔒
