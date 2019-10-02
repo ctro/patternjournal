@@ -4,23 +4,20 @@
     "password": null,
     "database": "pj_dev",
     "host": "db",
-    "dialect": "postgres",
-    "operatorsAliases": false
+    "dialect": "postgres"
   },
   "test": {
     "username": "postgres",
     "password": null,
     "database": "pj_test",
     "host": "db",
-    "dialect": "postgres",
-    "operatorsAliases": false
+    "dialect": "postgres"
   },
   "production": {
     "username": "postgres",
     "password": null,
     "database": "pj_production",
     "host": "127.0.0.1",
-    "dialect": "postgres",
-    "operatorsAliases": false
+    "dialect": "postgres"
   }
 }

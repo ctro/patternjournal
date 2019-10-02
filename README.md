@@ -133,11 +133,14 @@ Install deps: `sudo npm install`
 
 Migrate: `NODE_ENV=production ./node_modules/.bin/sequelize-cli db:migrate`
 
-Set up Oauth for prod
+Set up Oauth for prod -- one time setup. Creds are saved locally and ignored, and moved onto image
 
 Start pm2: `pm2 start pm2Config.json`
 
 Set pm2 to restart automatically: `pm2 startup && pm2 save`
+
+`image/.ssh` and `image/.env.prod` are gitignored, you need to create them! They are ignored. Add the public to github!
+
 ### Using PM2
 
 - `pm2 reload | restart | stop`

@@ -5,6 +5,7 @@ test/coverage/
 
 image/account.json
 image/.env.prod
+image/.ssh
 
 ngrok.exe
 packer.exe
