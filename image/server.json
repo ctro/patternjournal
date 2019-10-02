@@ -12,11 +12,17 @@
   "provisioners": [
     {
       "type": "shell",
-      "scripts": [
-        "apt.sh",
-        "postgres.sh",
-        "node.sh"
-      ]
+      "scripts": ["apt.sh", "postgres.sh", "node.sh", "github.sh", "nginx.sh"]
+    },
+    {
+      "type": "file",
+      "source": "nginx.config",
+      "destination": "/etc/nginx/sites-available/default"
+    },
+    {
+      "type": "file",
+      "source": ".env.prod",
+      "destination": "/home/packer/patternjournal/.env"
     }
   ]
 }

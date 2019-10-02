@@ -4,6 +4,7 @@ test/coverage/
 .ngrok.auth
 
 image/account.json
+image/.env.prod
 
 ngrok.exe
 packer.exe

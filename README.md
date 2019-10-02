@@ -112,3 +112,35 @@ Files related to Packer builds are in `image/`
 
 Build the image: `./image/build.ps1`
 
+### Launch the image
+
+For now just launch and configure one by hand in the Google UI.
+I can enable HTTP/S traffic from the interface. I can SSH from a browser!
+
+### Image Boot steps
+
+TODO: continue to move these steps into automation
+
+Create the Database:
+
+```
+sudo -i -u postgres
+createdb "pj_production"
+exit
+```
+
+Install deps: `sudo npm install`
+
+Migrate: `NODE_ENV=production ./node_modules/.bin/sequelize-cli db:migrate`
+
+Set up Oauth for prod
+
+Start pm2: `pm2 start pm2Config.json`
+
+Set pm2 to restart automatically: `pm2 startup && pm2 save`
+### Using PM2
+
+- `pm2 reload | restart | stop`
+- `pm2 list | status`
+- `pm2 logs`
+- `pm2 monit` 😵
