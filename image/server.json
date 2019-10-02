@@ -21,7 +21,14 @@
     },
     {
       "type": "shell",
-      "scripts": ["apt.sh", "postgres.sh", "node.sh", "github.sh", "nginx.sh"]
+      "scripts": [
+        "apt.sh",
+        "postgres.sh",
+        "node.sh",
+        "github.sh",
+        "nginx.sh",
+        "lets_encrypt.sh"
+      ]
     },
     {
       "type": "file",
@@ -30,7 +37,9 @@
     },
     {
       "type": "shell",
-      "inline": ["sudo mv /home/packer/nginx.conf /etc/nginx/sites-available/default"]
+      "inline": [
+        "sudo mv /home/packer/nginx.conf /etc/nginx/sites-available/default"
+      ]
     },
     {
       "type": "file",
