@@ -29,8 +29,8 @@ describe("User model", () => {
           }
         ]
       },
-      
-      { include: [ { model: db.Pattern, as: 'Patterns' } ] }
+
+      { include: [{ model: db.Pattern, as: "Patterns" }] }
     )
       .then(user => {
         expect(user.name).toEqual("UserTest");

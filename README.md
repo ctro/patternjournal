@@ -10,7 +10,6 @@ It also lets you add some notes.
 - Debian Buster (10)
 - Node 12
 
-
 ## Docker Setup
 
 Basically `docker-compose up`.
@@ -92,7 +91,7 @@ It just points to localhost.
 
 ### Ngrok
 
-Need to test on iphone? 
+Need to test on iphone?
 Ngrok is a secure public tunnel to localhost: https://ngrok.com/download
 
 ```bash

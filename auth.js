@@ -1,7 +1,7 @@
 const db = require("./models");
 
 module.exports = {
- passportSetup: function(app) {
+  passportSetup: function(app) {
     // development, production envs
     const passport = require("passport");
     const googleStrategy = require("passport-google-oauth20").Strategy;

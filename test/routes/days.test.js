@@ -54,8 +54,8 @@ describe("Day pages", () => {
         expect(response.headers["location"]).toBe("/day/2020/04/20");
       });
 
-      // GET the day page again and verify counts.
-      await request(app)
+    // GET the day page again and verify counts.
+    await request(app)
       .get("/day/2020/04/20")
       .then(response => {
         expect(response.statusCode).toBe(200);

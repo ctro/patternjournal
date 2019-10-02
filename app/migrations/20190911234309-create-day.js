@@ -9,8 +9,8 @@ module.exports = {
         allowNull: false,
         autoIncrement: true
       },
-       //belongs_to User
-       UserId: {
+      //belongs_to User
+      UserId: {
         type: Sequelize.INTEGER,
         references: {
           model: "Users", // name of target table

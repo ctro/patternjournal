@@ -43,7 +43,7 @@ if (process.env.NODE_ENV == "test") {
   app.use(test_helpers.doFakeAuth);
   //🚨🚨🚨
 } else {
-  const auth = require('./auth.js');
+  const auth = require("./auth.js");
   auth.passportSetup(app);
 }
 // 🔒🔒🔒 END Passport Auth Setup 🔒🔒🔒

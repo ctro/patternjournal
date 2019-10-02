@@ -24,6 +24,6 @@ module.exports = {
 
   // Javascript Date uses 0-based month index, don't do that.
   pjDate: function(year, month, day) {
-    return new Date(year, month -1 , day);
+    return new Date(year, month - 1, day);
   }
 };

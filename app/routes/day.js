@@ -13,19 +13,17 @@ router.get("/:year?/:month?/:day?", function(req, res, next) {
   var mYesterday = moment(mDate).subtract(1, "days");
   var mTomorrow = moment(mDate).add(1, "days");
 
-  db.Pattern.findAll(
-    {
-      where: { UserId: req.user.id },
-      order: [["createdAt", "ASC"]],
-      include: [
-        {
-          model: db.Day,
-          where: { date: mDate },
-          required: false // Not an inner join  TODO: Build the empty ones?
-        }
-      ]
-    }
-  ).then(patterns => {
+  db.Pattern.findAll({
+    where: { UserId: req.user.id },
+    order: [["createdAt", "ASC"]],
+    include: [
+      {
+        model: db.Day,
+        where: { date: mDate },
+        required: false // Not an inner join  TODO: Build the empty ones?
+      }
+    ]
+  }).then(patterns => {
     // pass shortcuts to req.params values
     res.render("day/day", {
       formattedDate: mDate.format("dddd MMMM Do YYYY"),
@@ -77,7 +75,6 @@ router.post("/incrementPatternCounter", (req, res) => {
     .then(thePatternDay => {
       res.redirect(`/day/${year}/${month}/${day}`);
     });
-
 });
 
 module.exports = router;

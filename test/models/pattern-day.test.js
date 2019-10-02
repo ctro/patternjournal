@@ -102,18 +102,17 @@ describe("PatternDay join", () => {
 
         expect(patterns[0].color).toEqual("gold");
         expect(patterns[1].color).toEqual("silver");
-        
-        expect(patterns[0].Days.length).toEqual(2);  // associated twice
+
+        expect(patterns[0].Days.length).toEqual(2); // associated twice
         expect(patterns[1].Days.length).toEqual(1);
 
-        expect(patterns[0].Days[0].date).toEqual('1978-12-17');
-        expect(patterns[0].Days[1].date).toEqual('1978-12-18');
-        expect(patterns[1].Days[0].date).toEqual('1978-12-18');
+        expect(patterns[0].Days[0].date).toEqual("1978-12-17");
+        expect(patterns[0].Days[1].date).toEqual("1978-12-18");
+        expect(patterns[1].Days[0].date).toEqual("1978-12-18");
 
         // On the 2nd day there were 2 golds and 7 silvers.
         expect(patterns[0].Days[1].PatternDay.count).toEqual(2);
         expect(patterns[1].Days[0].PatternDay.count).toEqual(7);
-
       });
   });
 });

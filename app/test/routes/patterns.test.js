@@ -94,7 +94,6 @@ describe("Pattern pages", () => {
         expect(response.text).toMatch(/Name can't be empty/);
         expect(response.text).toMatch(/Color can't be empty/);
       });
-
   });
 
   // EDIT
