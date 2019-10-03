@@ -48,7 +48,12 @@
     },
     {
       "type": "shell",
-      "inline": ["sudo mv /home/packer/.env /patternjournal/.env"]
+      "inline": ["sudo mv /home/packer/.env.prod /patternjournal/.env"]
+    },
+    {
+      "type": "file",
+      "source": "post_install.sh",
+      "destination": "/home/packer/"
     }
   ]
 }
