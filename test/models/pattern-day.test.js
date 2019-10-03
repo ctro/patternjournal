@@ -4,7 +4,7 @@ var helpers = require("../../helpers");
 // Kinda using this to test the "whole" datamodel relationship.
 
 describe("PatternDay join", () => {
-  test("Full datamodel relationship", async () => {
+  test("Full datamodel relationship", () => {
     // User -> 2 patterns -> 2 days = 4 patternDays
     //  the other model tests do combined creation. Use methods() here.
 

@@ -2,7 +2,7 @@ var db = require("../../models");
 var helpers = require("../../helpers");
 
 describe("Day model", () => {
-  test("Day CRUD and relationships", async () => {
+  test("Day CRUD and relationships", () => {
     var theDay = null;
     return db.Day.create(
       {

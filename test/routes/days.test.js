@@ -3,8 +3,8 @@ const app = require("../../app");
 const db = require("../../models");
 
 describe("Day pages", () => {
-  test("GET /day/<date>", async () => {
-    await request(app)
+  test("GET /day/<date>", () => {
+    return request(app)
       .get("/day/2020/04/20")
       .then(response => {
         expect(response.statusCode).toBe(200);
@@ -16,6 +16,7 @@ describe("Day pages", () => {
       });
   });
 
+  // this is a diff pattern -- instead of returning a Promisce you can async/await
   test("/day/<date> with Patterns, and Increment Counters", async () => {
     // Create a couple Patterns
     // this works because the initial fake user has id 1.

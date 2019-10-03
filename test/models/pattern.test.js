@@ -1,7 +1,7 @@
 var db = require("../../models");
 
 describe("Pattern model", () => {
-  test("Pattern CRUD and relationships", async () => {
+  test("Pattern CRUD and relationships", () => {
     return db.Pattern.create(
       {
         name: "bananas",

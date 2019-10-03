@@ -4,7 +4,7 @@ const db = require("../../models");
 
 describe("Pattern pages", () => {
   test("GET /patterns", async () => {
-    await request(app)
+    return request(app)
       .get("/patterns")
       .then(response => {
         expect(response.statusCode).toBe(200);
@@ -97,7 +97,7 @@ describe("Pattern pages", () => {
   });
 
   // EDIT
-  test("GET /patterns/id does not work for wrong User", async () => {
+  test("GET /patterns/id does not work for wrong User", () => {
     return db.Pattern.create(
       {
         name: "mandarin",
@@ -129,7 +129,7 @@ describe("Pattern pages", () => {
       });
   });
 
-  test("GET /patterns/id works for User", async () => {
+  test("GET /patterns/id works for User", () => {
     return db.Pattern.create({
       name: "peas",
       color: "green",
@@ -154,7 +154,7 @@ describe("Pattern pages", () => {
   });
 
   // UPDATE
-  test("UPDATE /patterns/id 404s for wrong User", async () => {
+  test("UPDATE /patterns/id 404s for wrong User", () => {
     return db.Pattern.create(
       {
         name: "squash",
@@ -189,7 +189,7 @@ describe("Pattern pages", () => {
       });
   });
 
-  test("UPDATE /patterns/id works for User", async () => {
+  test("UPDATE /patterns/id works for User", () => {
     return db.Pattern.create({
       name: "twix",
       color: "brown",
@@ -227,9 +227,9 @@ describe("Pattern pages", () => {
       });
   });
 
-  test("DELETE /patterns works and obeys UserId", async () => {
+  test("DELETE /patterns works and obeys UserId", () => {
     // Create a one-off pattern for the test
-    await db.Pattern.create({
+    return db.Pattern.create({
       name: "testpattern",
       color: "green",
       UserId: 1
@@ -252,9 +252,9 @@ describe("Pattern pages", () => {
     });
   });
 
-  test("DELETE /patterns does not work for the wrong user", async () => {
+  test("DELETE /patterns does not work for the wrong user",  () => {
     // Create a one-off pattern for the test
-    await db.Pattern.create({
+    return db.Pattern.create({
       name: "drink bubbles",
       color: "pink",
       User: {
