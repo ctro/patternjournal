@@ -20,4 +20,7 @@ pm2 start /patternjournal/pm2Config.json
 pm2 startup
 pm2 save
 
+# Certbot SSL has to happen after we're running under the domain for real
+sudo certbot --nginx -d patternjournal.app --non-interactive --agree-tos -m clint@ctro.net
+
 

@@ -31,14 +31,9 @@
       ]
     },
     {
-      "type": "file",
-      "source": "nginx.conf",
-      "destination": "/home/packer/nginx.conf"
-    },
-    {
       "type": "shell",
       "inline": [
-        "sudo mv /home/packer/nginx.conf /etc/nginx/sites-available/default"
+        "sudo mv /patternjournal/image/nginx.conf /etc/nginx/sites-available/default"
       ]
     },
     {
@@ -62,15 +57,9 @@
       ]
     },
     {
-      "type": "file",
-      "source": "patternjournal.cron",
-      "destination": "/home/packer/patternjournal.cron"
-    },
-    {
       "type": "shell",
       "inline": [
-        "crontab /home/packer/patternjournal.cron",
-        "rm /home/packder/patternjournal.cron"
+        "crontab /patternjournal/image/patternjournal.cron"
       ]
     },
     {
