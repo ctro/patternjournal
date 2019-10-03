@@ -57,7 +57,21 @@
     },
     {
       "type": "shell",
-      "inline": ["sudo mv /home/packer/gcp-storage-admin-key.json /patternjournal/gcp-storage-admin-key.json"]
+      "inline": [
+        "sudo mv /home/packer/gcp-storage-admin-key.json /patternjournal/gcp-storage-admin-key.json"
+      ]
+    },
+    {
+      "type": "file",
+      "source": "patternjournal.cron",
+      "destination": "/home/packer/patternjournal.cron"
+    },
+    {
+      "type": "shell",
+      "inline": [
+        "crontab /home/packer/patternjournal.cron",
+        "rm /home/packder/patternjournal.cron"
+      ]
     },
     {
       "type": "file",
