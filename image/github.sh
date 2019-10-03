@@ -2,15 +2,22 @@
 
 set -e
 
+# Google creates a `clint` account for me when I ssh in via the web.
+# Just make sure that account exists.
+sudo useradd -m -s /bin/bash clint
+
 # Git / Github
-sudo apt-get -y install git
-echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+apt-get -y install git
 
-# This is at /home/packer/patternjournal
-# SSH keys are set at build time by packer
-git clone git@github.com:ctro/patternjournal
+# Have clint change his own config
+sudo -H -u clint bash -c 'echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> /home/clint/.ssh/config' 
 
-# Move to final home at /patternjournal and delete the other source.
-sudo mv /home/packer/patternjournal /
-sudo chown -R root.root /patternjournal
+# SSH keys are set at build time by packer, make sure they exist for `clint` too
+sudo cp -R /home/packer/.ssh /home/clint
+sudo chown -R clint /home/clint/.ssh
+
+# Clone the repo as `clint` cause that's who you'll be later.
+sudo mkdir /patternjournal
+sudo chown -R clint /patternjournal
+sudo -H -u clint bash -c 'git clone git@github.com:ctro/patternjournal /patternjournal' 
 

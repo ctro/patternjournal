@@ -135,6 +135,14 @@ Need to create Service user for this. "Storage Admin". Create a JSON key.
 
 [G.Analytics Dashboard](https://analytics.google.com/analytics/web/#/report-home/a149375566w211762316p203314667)
 
+### Prod Access
+
+Google provides secure SSH from the browser, just use that it's simple and secure.
+
+### Deploys
+
+SSH to prod and run /patternjournal/deploy.sh
+
 
 ### Using PM2
 

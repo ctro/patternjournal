@@ -1,9 +1,22 @@
 {
-  "apps": [{
-    "script" : "./bin/www",
-    "env": {
-      "NODE_ENV": "production",
-      "PORT": "8080"
+  "apps": [
+    {
+      "name": "Pattern Journal Web",
+      "script": "./bin/www",
+      "env": {
+        "NODE_ENV": "production",
+        "PORT": "8080"
+      }
     }
-  }]
+  ],
+  "deploy": {
+    "production": {
+      "user": "ubuntu",
+      "host": ["192.168.0.13"],
+      "ref": "origin/master",
+      "repo": "git@github.com:ctro/patternjournal.git",
+      "path": "/patternjournal",
+      "post-deploy": "npm install"
+    }
+  }
 }
