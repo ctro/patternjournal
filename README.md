@@ -128,6 +128,9 @@ I can enable HTTP/S traffic from the interface. I can SSH from a browser!
     - Create credentials and save `.ssh` in the `image` folder.
     - It's in `.gitignore` already, the image will be built with this included.
 
+Need to create GCP bucket. Multi-region US. "Nearline", "Bucket Policy". Retention Policy 3 years.
+Need to create Service user for this. "Storage Admin". Create a JSON key.
+
 ### Analytics
 
 [G.Analytics Dashboard](https://analytics.google.com/analytics/web/#/report-home/a149375566w211762316p203314667)
@@ -138,4 +141,4 @@ I can enable HTTP/S traffic from the interface. I can SSH from a browser!
 - `pm2 reload | restart | stop`
 - `pm2 list | status`
 - `pm2 logs`
-- `pm2 monit` 😵
+- `pm2 monit` 😵 This is as good as our monitoring gets now. No alerting yet :)

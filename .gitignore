@@ -6,6 +6,7 @@ test/coverage/
 image/account.json
 image/.env.prod
 image/.ssh
+image/gcp-storage-admin-key.json
 
 ngrok.exe
 packer.exe
