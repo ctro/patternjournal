@@ -7,14 +7,15 @@ set -e
 # Create the production database as the postgres user
 sudo -H -u postgres bash -c 'createdb pj_production' 
 
-# Is this required???  npm install
-# npm install /pattertnjournal/package.json
+# We do npm install now, good time?
+cd /patternjournal
+sudo npm install
 
 # Migrate Database
-NODE_ENV=production /patternjournal/node_modules/.bin/sequelize-cli db:migrate
+NODE_ENV=production ./node_modules/.bin/sequelize-cli db:migrate
 
 # Start the server
-pm2 start /patternjournal/pm2Config.json
+pm2 start ./pm2Config.json
 
 # Set server to restart
 pm2 startup
