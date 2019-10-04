@@ -55,6 +55,15 @@
       "inline": ["sudo mv /home/packer/serviceAdminAccount.json /patternjournal/image/"]
     },
     {
+      "type": "file",
+      "source": "motd",
+      "destination": "/home/packer/"
+    },
+    {
+      "type": "shell",
+      "inline": ["sudo mv /home/packer/motd /etc/motd"]
+    },
+    {
       "type": "shell",
       "inline": [
         "sudo crontab /patternjournal/image/patternjournal.cron"
