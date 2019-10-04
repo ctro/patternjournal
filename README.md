@@ -156,6 +156,8 @@ I can enable HTTP/S traffic from the interface. I can SSH from a browser!
 /patternjournal/image/bootstrap.sh
 ```
 
+*Please Note* that if your DNS isn't pointed to the instance, Certbot will fail on the last step of the bootstrap.
+
 ### Analytics
 
 [G.Analytics Dashboard](https://analytics.google.com/analytics/web/#/report-home/a149375566w211762316p203314667)

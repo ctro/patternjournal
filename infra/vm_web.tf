@@ -24,4 +24,7 @@ resource "google_compute_instance" "pj_web_vm" {
       nat_ip = "${google_compute_address.pj_web_static_ip.address}"
     }
   }
+
+  # There are existing firewall rules we can use, just set tags I guess.
+  tags = ["http-server", "https-server"]
 }
