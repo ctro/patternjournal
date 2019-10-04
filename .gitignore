@@ -8,6 +8,7 @@ image/.env.prod
 image/.ssh
 
 infra/terraform.exe
+infra/.terraform
 
 ngrok.exe
 packer.exe
