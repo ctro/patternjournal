@@ -8,7 +8,7 @@ sudo -H -u postgres bash -c 'pg_dump pj_production > "/tmp/pj_production.backup.
 
 # Upload the dump to Storage, gsutil is just installed :)
 gcloud auth activate-service-account --key-file /patternjournal/image/serviceAdminAccount.json
-gsutil cp /tmp/pj_production.backup* gs://patternjournal-production-backups/
+gsutil cp /tmp/pj_production.backup* gs://patternjournal_postgres_backups
 
 # Cleanup to save local space, and because we're sloppy about uploads
 sudo rm -f /tmp/pj_production.backup*

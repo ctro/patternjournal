@@ -7,12 +7,12 @@ set -e
 # Create the production database as the postgres user
 sudo -H -u postgres bash -c 'createdb pj_production' 
 
-# We do npm install now, good time?
+# Do an initial npm install as clint
 cd /patternjournal
-sudo npm install
+sudo -H -u clint bash -c 'npm install' 
 
-# Migrate Database
-NODE_ENV=production ./node_modules/.bin/sequelize-cli db:migrate
+# Migrate Database as clint
+sudo -H -u clint bash -c 'NODE_ENV=production ./node_modules/.bin/sequelize-cli db:migrate' 
 
 # Start the server
 pm2 start ./pm2Config.json
