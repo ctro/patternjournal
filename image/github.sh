@@ -7,14 +7,14 @@ set -e
 sudo useradd -m -s /bin/bash clint
 
 # Git / Github
-apt-get -y install git
-
-# Have clint change his own config
-sudo -H -u clint bash -c 'echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> /home/clint/.ssh/config' 
+sudo apt-get -y install git
 
 # SSH keys are set at build time by packer, make sure they exist for `clint` too
 sudo cp -R /home/packer/.ssh /home/clint
 sudo chown -R clint /home/clint/.ssh
+
+# Have clint change his own config
+sudo -H -u clint bash -c 'echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> /home/clint/.ssh/config' 
 
 # Clone the repo as `clint` cause that's who you'll be later.
 sudo mkdir /patternjournal

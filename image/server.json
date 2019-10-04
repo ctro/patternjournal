@@ -62,11 +62,6 @@
         "sudo crontab /patternjournal/image/patternjournal.cron",
         "sudo chmod +x /patternjournal/image/backup_db.sh"
       ]
-    },
-    {
-      "type": "file",
-      "source": "post_install.sh",
-      "destination": "/home/packer/"
     }
   ]
 }
