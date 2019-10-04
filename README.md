@@ -111,12 +111,7 @@ Files related to Packer builds are in `image/`
 
 Build the image: `./image/build.ps1`
 
-### Launch the image
-
-For now just launch and configure one by hand in the Google UI.
-I can enable HTTP/S traffic from the interface. I can SSH from a browser!
-
-### Image Boot steps
+### Image Pre-Boot steps
 
 1. Set up Oauth for prod.
     - This is a one-time setup. 
@@ -128,8 +123,21 @@ I can enable HTTP/S traffic from the interface. I can SSH from a browser!
     - Create credentials and save `.ssh` in the `image` folder.
     - It's in `.gitignore` already, the image will be built with this included.
 
+TERRAFORM TODO
 Need to create GCP bucket. Multi-region US. "Nearline", "Bucket Policy". Retention Policy 3 years.
 Need to create Service user for this. "Storage Admin". Create a JSON key.
+Need to  create static IP
+
+### Launch the image
+
+For now just launch and configure one by hand in the Google UI.
+I can enable HTTP/S traffic from the interface. I can SSH from a browser!
+
+### Post-Boot steps
+
+```sh
+/patternjournal/image/bootstrap.sh
+```
 
 ### Analytics
 

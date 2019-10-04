@@ -10,6 +10,3 @@ sudo sed -i 's/local   all             all                                     m
 sudo sed -i 's/host    all             all             127.0.0.1\/32            md5/host    all             all             127.0.0.1\/32            trust/' /etc/postgresql/11/main/pg_hba.conf
 
 sudo chown postgres /etc/postgresql/11/main/pg_hba.conf
-
-# TODO: need to make a space for backups!
-# sudo -H -u postgres mkdir -p /home/postgres/backups

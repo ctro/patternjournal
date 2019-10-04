@@ -21,3 +21,8 @@ sudo mkdir /patternjournal
 sudo chown -R clint /patternjournal
 sudo -H -u clint bash -c 'git clone git@github.com:ctro/patternjournal /patternjournal' 
 
+# We just cloned the app.  Some files need exec permissions... may as well do it here :)
+sudo -H -u clint bash -c 'chmod +x /patternjournal/image/bootstrap.sh'
+sudo -H -u clint bash -c 'chmod +x /patternjournal/image/backup_db.sh'
+sudo -H -u clint bash -c 'chmod +x /patternjournal/image/restore_db.sh'
+

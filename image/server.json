@@ -59,8 +59,7 @@
     {
       "type": "shell",
       "inline": [
-        "sudo crontab /patternjournal/image/patternjournal.cron",
-        "sudo chmod +x /patternjournal/image/backup_db.sh"
+        "sudo crontab /patternjournal/image/patternjournal.cron"
       ]
     }
   ]
