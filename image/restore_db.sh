@@ -8,7 +8,7 @@ set -e
 BACKUP="CHANGEME"
 
 gcloud auth activate-service-account --key-file /patternjournal/image/serviceAdminAccount.json
-sudo gsutil cp gs://patternjournal_postgres_backups/$BACKUP .
+gsutil cp "gs://patternjournal_postgres_backups/$BACKUP" .
 sudo chown postgres $BACKUP 
 
 sudo -H -u postgres bash -c "dropdb pj_production" 

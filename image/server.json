@@ -46,6 +46,15 @@
       "inline": ["sudo mv /home/packer/.env.prod /patternjournal/.env"]
     },
     {
+      "type": "file",
+      "source": "serviceAdminAccount.json",
+      "destination": "/home/packer/"
+    },
+    {
+      "type": "shell",
+      "inline": ["sudo mv /home/packer/serviceAdminAccount.json /patternjournal/image/"]
+    },
+    {
       "type": "shell",
       "inline": [
         "sudo crontab /patternjournal/image/patternjournal.cron"
