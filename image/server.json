@@ -2,7 +2,7 @@
   "builders": [
     {
       "type": "googlecompute",
-      "account_file": "account.json",
+      "account_file": "serviceAdminAccount.json",
       "project_id": "pattern-journal-1568127981392",
       "source_image_family": "debian-10",
       "ssh_username": "packer",
@@ -44,17 +44,6 @@
     {
       "type": "shell",
       "inline": ["sudo mv /home/packer/.env.prod /patternjournal/.env"]
-    },
-    {
-      "type": "file",
-      "source": "gcp-storage-admin-key.json",
-      "destination": "/home/packer/"
-    },
-    {
-      "type": "shell",
-      "inline": [
-        "sudo mv /home/packer/gcp-storage-admin-key.json /patternjournal/gcp-storage-admin-key.json"
-      ]
     },
     {
       "type": "shell",

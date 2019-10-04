@@ -104,29 +104,42 @@ Ngrok is a secure public tunnel to localhost: https://ngrok.com/download
 
 Use [Packer](https://packer.io) to build machine images.
 We run both the server and the database on one small VM.
-We expect `packer.exe` to be in `bin/`
-You need an `account.json`, [Instructions](https://www.packer.io/docs/builders/googlecompute.html)
+We expect `packer.exe` to be in `image/`
 
 Files related to Packer builds are in `image/`
 
-Build the image: `./image/build.ps1`
+### Terraform
 
-### Image Pre-Boot steps
+Use [Terraform](https://terraform.io) to build infrastructure.
+We expect `terraform.exe` to be in `infra/`
+
+Files related to Terraform are in `infra/`
+
+### Pre-Build steps
+
+These are all one-time setup tasks
 
 1. Set up Oauth for prod.
-    - This is a one-time setup. 
     - Create credentials and save `.env.prod` in the `image` folder.
     - It's in `.gitignore` already, the image will be built with this included.
 
 2. Set up Github creds
-    - This is a one-time setup. 
-    - Create credentials and save `.ssh` in the `image` folder.
+    - `ssh-keygen` credentials locally and save `.ssh` folder in the `image` folder.
+    - It's in `.gitignore` already, the image will be built with this included.
+
+3. Set up a Service user
+    - Name it PatternJournalServiceAdmin or something. We use the same user for image building, backup uploads, etc.
+    - User must have `Compute Admin` and `Storage Admin` Roles.
+    - Create credentials in the Google Console and save `serviceAdminAccount.json` in the `image` folder.
     - It's in `.gitignore` already, the image will be built with this included.
 
 TERRAFORM TODO
-Need to create GCP bucket. Multi-region US. "Nearline", "Bucket Policy". Retention Policy 3 years.
 Need to create Service user for this. "Storage Admin". Create a JSON key.
 Need to  create static IP
+
+### Now Build the image
+
+`image/build.ps1`
 
 ### Launch the image
 

@@ -3,10 +3,11 @@ node_modules
 test/coverage/
 .ngrok.auth
 
-image/account.json
+image/serviceAdminAccount.json
 image/.env.prod
 image/.ssh
-image/gcp-storage-admin-key.json
+
+infra/terraform.exe
 
 ngrok.exe
 packer.exe

@@ -25,4 +25,5 @@ sudo -H -u clint bash -c 'git clone git@github.com:ctro/patternjournal /patternj
 sudo -H -u clint bash -c 'chmod +x /patternjournal/image/bootstrap.sh'
 sudo -H -u clint bash -c 'chmod +x /patternjournal/image/backup_db.sh'
 sudo -H -u clint bash -c 'chmod +x /patternjournal/image/restore_db.sh'
+sudo -H -u clint bash -c 'chmod +x /patternjournal/image/deploy.sh'
 
