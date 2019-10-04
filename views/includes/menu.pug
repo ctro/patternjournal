@@ -3,7 +3,7 @@ div.row
     ul.nes-list.is-disc
       if(user)
         li
-          a(href=`/day/${today.year}/${today.month}/${today.day}`) Today
+          a(href=`/day/${today.year}/${today.month}/${today.day}`)= `Today ${today.year}-${today.month}-${today.day}`
         li
           a(href='/patterns') Patterns
       else
