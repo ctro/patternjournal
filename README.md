@@ -128,20 +128,24 @@ These are all one-time setup tasks
     - It's in `.gitignore` already, the image will be built with this included.
 
 3. Set up a Service user
-    - Name it PatternJournalServiceAdmin or something. We use the same user for image building, backup uploads, etc.
-    - User must have `Compute Admin` and `Storage Admin` Roles.
+    - Name it PjServiceAdmin or something. We use the same user for image building, backup uploads, etc.
+    - **User must have these Roles**
+        - `Compute Admin`
+        - `Compute Instance Admin V1` 
+        - `Service Account User`
+        - `Storage Admin`
     - Create credentials in the Google Console and save `serviceAdminAccount.json` in the `image` folder.
     - It's in `.gitignore` already, the image will be built with this included.
-
-TERRAFORM TODO
-Need to create Service user for this. "Storage Admin". Create a JSON key.
-Need to  create static IP
 
 ### Now Build the image
 
 `image/build.ps1`
 
+You need to update the `image_id` variable in Terraform variables.
+
 ### Launch the image
+
+`infra/build.ps1`
 
 For now just launch and configure one by hand in the Google UI.
 I can enable HTTP/S traffic from the interface. I can SSH from a browser!
