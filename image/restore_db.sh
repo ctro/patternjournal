@@ -11,6 +11,7 @@ gcloud auth activate-service-account --key-file /patternjournal/image/serviceAdm
 gsutil cp "gs://patternjournal_postgres_backups/$BACKUP" .
 sudo chown postgres $BACKUP 
 
+# 💀⚡💀⚡💀⚡💀⚡ WARNING this drops your DB.
 sudo -H -u postgres bash -c "dropdb pj_production" 
 sudo -H -u postgres bash -c "createdb pj_production" 
-sudo -H -u postgres bash -c "psql pj_production < $BACKUP" 
+sudo -H -u postgres bash -c "psql pj_production < '$BACKUP'" 

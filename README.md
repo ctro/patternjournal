@@ -166,7 +166,7 @@ Google provides secure SSH from the browser, just use that it's simple and secur
 
 ### Deploys
 
-SSH to prod and run /patternjournal/deploy.sh
+SSH to prod and run `/patternjournal/image/deploy.sh`
 
 
 ### Using PM2
