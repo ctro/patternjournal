@@ -19,7 +19,7 @@ router.get("/:year/:month/:day", function(req, res, next) {
       {
         model: db.Day,
         where: { date: mDate },
-        required: false // Not an inner join  TODO: Build the empty ones?
+        required: false
       }
     ]
   }).then(patterns => {
