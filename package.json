@@ -11,7 +11,8 @@
     "migrate:reset": "sequelize-cli db:migrate:undo:all && npm run migrate",
     "prettify": "./node_modules/.bin/prettier --write '**/*.js' '**/*.md' '**/*.yml' ",
     "loadtest-prod": "./node_modules/.bin/loadtest -c 10 --rps 200 https://patternjournal.app/",
-    "benchmark-prod": "./node_modules/.bin/loadtest -c 10 -n 1000  https://patternjournal.app/"
+    "benchmark-prod": "./node_modules/.bin/loadtest -c 10 -n 1000  https://patternjournal.app/",
+    "snyk": "./node_modules/.bin/snyk test"
   },
   "dependencies": {
     "bulma": "^0.7.5",
@@ -28,7 +29,7 @@
     "passport": "^0.4.0",
     "passport-google-oauth20": "^2.0.0",
     "pg": "^7.12.1",
-    "pug": "2.0.0-beta11",
+    "pug": "^2.0.4",
     "sequelize": "^5.18.1",
     "sequelize-cli": "^5.5.1"
   },
@@ -37,6 +38,7 @@
     "loadtest": "^3.0.8",
     "nodemon": "^1.19.2",
     "prettier": "^1.18.2",
+    "snyk": "^1.231.0",
     "supertest": "^4.0.2"
   }
 }
