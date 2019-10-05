@@ -88,10 +88,7 @@ router.post("/:year/:month/:day", function(req, res, next) {
     req.params.month,
     req.params.day
   );
-  // var isoDate = `${req.params.year}-${req.params.month}-${req.params.day}`;
-  console.log("🥓🥓🥓🥓🥓🥓🥓🥓🥓🥓🥓🥓🥓");
-  console.log(dayDate);
-  // console.log(isoDate);
+
   return db.Day.findOrCreate({
     where: { date: dayDate, UserId: req.user.id }
   })

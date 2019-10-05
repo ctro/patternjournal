@@ -14,7 +14,12 @@ module.exports = {
 
   // Middleware to add today.year, month, and day
   addToday: function(req, res, next) {
+    // Date is always UTC on server.
     var dateObj = new Date();
+
+    // HACK: everyone is mountain time now!
+    dateObj.setHours(dateObj.getHours() - 6);
+
     var month = dateObj.getUTCMonth() + 1; //months from 1-12
     var day = dateObj.getUTCDate();
     var year = dateObj.getUTCFullYear();
