@@ -12,7 +12,9 @@ describe("Day pages", () => {
 
         // check yesterday/tomorrow links
         expect(response.text).toMatch(/a href="\/day\/2020\/04\/19">/);
-        expect(response.text).toMatch(/a href="\/day\/2020\/04\/21">2020-04-21/);
+        expect(response.text).toMatch(
+          /a href="\/day\/2020\/04\/21">2020-04-21/
+        );
       });
   });
 
@@ -35,7 +37,9 @@ describe("Day pages", () => {
         expect(response.text).toMatch(/Monday April 20th 2020/);
 
         expect(response.text).toMatch(/a href="\/day\/2020\/04\/19">/);
-        expect(response.text).toMatch(/a href="\/day\/2020\/04\/21">2020-04-21/);
+        expect(response.text).toMatch(
+          /a href="\/day\/2020\/04\/21">2020-04-21/
+        );
         expect(response.text).toMatch(/grass/);
         expect(response.text).toMatch(/roses/);
         expect(response.text).not.toMatch(/dandelion/);
@@ -65,6 +69,28 @@ describe("Day pages", () => {
         // check yesterday/tomorrow links
         expect(response.text).toMatch(/grass: 1/);
         expect(response.text).toMatch(/roses: 0/);
+      });
+  });
+
+  test("UPDATE /day/year/month/day works", () => {
+    request(app)
+      .post(`/day/2020/12/17`)
+      .send({
+        note: "ILOVEYOU"
+      })
+      .then(response => {
+        expect(response.statusCode).toBe(302);
+        expect(response.headers["location"]).toBe("/day/2020/12/17");
+        expect(response.text).not.toMatch(/ILOVEYOU/);
+
+        return "ok";
+      })
+      .then(msg => {
+        request(app)
+          .get("/day/2020/12/17")
+          .then(response => {
+            expect(response.text).toMatch(/ILOVEYOU/);
+          });
       });
   });
 });

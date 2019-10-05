@@ -1,0 +1,7 @@
+block content
+  hr
+  form(method='POST' action=`/day/${year}/${month}/${day}`)
+    div
+      label(for='name') Notes:
+      textarea.nes-textarea(name='note')= sDay.note
+    button.nes-btn.is-success(type='submit') Update

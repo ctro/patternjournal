@@ -5,15 +5,14 @@ const helpers = require("../helpers");
 const db = require("../models");
 
 /* GET pattern page. */
-router.get("/:year?/:month?/:day?", function(req, res, next) {
+router.get("/:year/:month/:day", function(req, res, next) {
   // Make a friendly date
-  var mDate = moment(
-    helpers.pjDate(req.params.year, req.params.month, req.params.day)
-  );
+  var jDate = helpers.pjDate(req.params.year, req.params.month, req.params.day)
+  var mDate = moment(jDate);
   var mYesterday = moment(mDate).subtract(1, "days");
   var mTomorrow = moment(mDate).add(1, "days");
 
-  db.Pattern.findAll({
+  return db.Pattern.findAll({
     where: { UserId: req.user.id },
     order: [["createdAt", "ASC"]],
     include: [
@@ -24,15 +23,20 @@ router.get("/:year?/:month?/:day?", function(req, res, next) {
       }
     ]
   }).then(patterns => {
-    // pass shortcuts to req.params values
-    res.render("day/day", {
-      formattedDate: mDate.format("dddd MMMM Do YYYY"),
-      mYesterday: mYesterday,
-      mTomorrow: mTomorrow,
-      year: req.params.year,
-      month: req.params.month,
-      day: req.params.day,
-      patterns: patterns
+    db.Day.findOrCreate({
+      where: { UserId: req.user.id, date: jDate }
+    }).then(([day, created]) => {
+      // pass shortcuts to req.params values
+      res.render("day/day", {
+        formattedDate: mDate.format("dddd MMMM Do YYYY"),
+        mYesterday: mYesterday,
+        mTomorrow: mTomorrow,
+        year: req.params.year,
+        month: req.params.month,
+        day: req.params.day,
+        patterns: patterns,
+        sDay: day
+      });
     });
   });
 });
@@ -74,6 +78,37 @@ router.post("/incrementPatternCounter", (req, res) => {
     })
     .then(thePatternDay => {
       res.redirect(`/day/${year}/${month}/${day}`);
+    });
+});
+
+/* POST day note. */
+router.post("/:year/:month/:day", function(req, res, next) {
+  var dayDate = helpers.pjDate(
+    req.params.year,
+    req.params.month,
+    req.params.day
+  );
+  // var isoDate = `${req.params.year}-${req.params.month}-${req.params.day}`;
+  console.log("🥓🥓🥓🥓🥓🥓🥓🥓🥓🥓🥓🥓🥓");
+  console.log(dayDate);
+  // console.log(isoDate);
+  return db.Day.findOrCreate({
+    where: { date: dayDate, UserId: req.user.id }
+  })
+    .then(([day, created]) => {
+      if (day) {
+        return day.update({
+          note: req.body.note
+        });
+      } else {
+        res.status(404);
+        res.render("404");
+      }
+    })
+    .then(updatedDay => {
+      res.redirect(
+        `/day/${req.params.year}/${req.params.month}/${req.params.day}`
+      );
     });
 });
 
