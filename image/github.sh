@@ -20,4 +20,3 @@ sudo -H -u clint bash -c 'echo -e "Host github.com\n\tStrictHostKeyChecking no\n
 sudo mkdir /patternjournal
 sudo chown -R clint /patternjournal
 sudo -H -u clint bash -c 'git clone git@github.com:ctro/patternjournal /patternjournal' 
-
