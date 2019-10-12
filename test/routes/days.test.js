@@ -73,7 +73,7 @@ describe("Day pages", () => {
   });
 
   test("UPDATE /day/year/month/day works", () => {
-    request(app)
+    return request(app)
       .post(`/day/2020/12/17`)
       .send({
         note: "ILOVEYOU"
@@ -93,4 +93,6 @@ describe("Day pages", () => {
           });
       });
   });
+
+  
 });

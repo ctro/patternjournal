@@ -7,7 +7,7 @@ const db = require("../models");
 /* GET pattern page. */
 router.get("/:year/:month/:day", function(req, res, next) {
   // Make a friendly date
-  var jDate = helpers.pjDate(req.params.year, req.params.month, req.params.day)
+  var jDate = helpers.pjDate(req.params.year, req.params.month, req.params.day);
   var mDate = moment(jDate);
   var mYesterday = moment(mDate).subtract(1, "days");
   var mTomorrow = moment(mDate).add(1, "days");
@@ -47,12 +47,16 @@ router.post("/incrementPatternCounter", (req, res) => {
   const month = req.body.month;
   const day = req.body.day;
   const patternId = req.body.patternId;
+  var remName = null; // pull this one out.
 
   // Start with the User's Pattern, it exists.
   return db.Pattern.findOne({
     where: { id: patternId, UserId: req.user.id }
   })
     .then(pattern => {
+      //remember the name
+      remName = pattern.name;
+
       // findOrCreate a Day
       return db.Day.findOrCreate({
         where: { UserId: req.user.id, date: helpers.pjDate(year, month, day) }
@@ -77,6 +81,7 @@ router.post("/incrementPatternCounter", (req, res) => {
       });
     })
     .then(thePatternDay => {
+      req.session.flashMotivation = remName;
       res.redirect(`/day/${year}/${month}/${day}`);
     });
 });
@@ -93,16 +98,12 @@ router.post("/:year/:month/:day", function(req, res, next) {
     where: { date: dayDate, UserId: req.user.id }
   })
     .then(([day, created]) => {
-      if (day) {
-        return day.update({
-          note: req.body.note
-        });
-      } else {
-        res.status(404);
-        res.render("404");
-      }
+      return day.update({
+        note: req.body.note
+      });
     })
     .then(updatedDay => {
+      req.session.flashMotivation = `Message Received`;
       res.redirect(
         `/day/${req.params.year}/${req.params.month}/${req.params.day}`
       );

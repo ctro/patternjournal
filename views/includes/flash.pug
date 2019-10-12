@@ -1,5 +1,15 @@
-// This expects flashErrors to be an array of errors that responds to .message
-if(flashErrors)
-  ul
-  each error in flashErrors
-    li.nes-text.is-error= error.message
+div.row
+  div.twelve.columns(style="text-align:center;")
+
+    if(flashErrors)
+      ul
+      each error in flashErrors
+        li.nes-text.is-error= error.message
+
+    if (flashMessage)
+      p.nes-text.is-success
+        i.nes-icon.like
+        strong= ` ${flashMessage}`
+
+    if (flashMotivation)
+      p.nes-text.is-success  <i class="nes-icon coin"></i> <strong>#{ flashMotivation }</strong> <i class="nes-icon coin"></i>

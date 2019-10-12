@@ -32,6 +32,7 @@ router.post("/", (req, res) => {
     UserId: req.user.id
   })
     .then(newPattern => {
+      req.session.flashMessage = `${newPattern.name} created`;
       res.redirect("/patterns");
     })
     .catch(validation => {
@@ -70,6 +71,7 @@ router.post("/update/:id", (req, res) => {
       }
     })
     .then(updatedPattern => {
+      req.session.flashMessage = `${updatedPattern.name} updated`;
       res.redirect("/patterns");
     });
 });
@@ -83,6 +85,7 @@ router.delete("/:id", (req, res) => {
       UserId: req.user.id
     }
   }).then(deletedPattern => {
+    req.session.flashMessage = `Cool, it's deleted`;
     res.redirect("/patterns");
   });
 });

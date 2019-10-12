@@ -16,18 +16,21 @@ block content
   each pattern, index in patterns
     if(index % 3 === 0)
       | <div class="row" style="margin-top:1.5em">
-    div.four.columns(style=`background-color:${pattern.color}; padding: 1em; border-radius:0.1em; box-shadow:0.7em 0.7em #CCC;`)
-      form(method='POST' action='/day/incrementPatternCounter')
-        p(style="background-color: white; border-radius:0.1em; padding: 1em")
-          = pattern.name
-          = ": " 
-          =((pattern.Days[0] && pattern.Days[0].PatternDay) ? pattern.Days[0].PatternDay.count : 0)
-        p(style="float:right")
-          input(type="hidden" name="year" value=`${year}`)
-          input(type="hidden" name="month" value=`${month}`)
-          input(type="hidden" name="day" value=`${day}`)
-          input(type="hidden" name="patternId" value=`${pattern.id}`)
-          button.nes-btn(type='submit') +1
+    div.four.columns
+      div.nes-container.is-rounded(style=`background-color:${pattern.color};`)
+        p
+          form(method='POST' action='/day/incrementPatternCounter')
+            div.nes-container.is-rounded(style="background-color:white")
+              p
+                = pattern.name
+                = ": " 
+                =((pattern.Days[0] && pattern.Days[0].PatternDay) ? pattern.Days[0].PatternDay.count : 0)
+
+                input(type="hidden" name="year" value=`${year}`)
+                input(type="hidden" name="month" value=`${month}`)
+                input(type="hidden" name="day" value=`${day}`)
+                input(type="hidden" name="patternId" value=`${pattern.id}`)
+            button.nes-btn(type='submit' style="margin-top:1em;") +1
     // /div if it's time to get a newline, or if we're out of patterns.
     if ((index % 3 === 2) || index+1 === patterns.length )
       | </div>

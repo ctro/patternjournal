@@ -1,23 +1,17 @@
-div.row
-  div.four.columns
+div.nes-container.with-title.is-rounded(style="margin-top:4em")
+  p.title Menu
     ul.nes-list.is-disc
       if(user)
         li
-          a(href=`/day/${today.year}/${today.month}/${today.day}`)= `Today ${today.year}-${today.month}-${today.day}`
+          img.nes-avatar.is-rounded.is-medium(src=`${user.imageUrl}`, style='image-rendering: pixelated;')
+          = ` ${user.name}`  
+        li
+          a(href=`/day/${today.year}/${today.month}/${today.day}`)= `🌄 ${today.year}-${today.month}-${today.day}`
         li
           a(href='/patterns') Patterns
-      else
-        
-  div.eight.columns
-    ul.nes-list.is-disc(style="float:right")
-      if(user)
-        li
-          =user.name
-          img.nes-avatar.is-rounded.is-medium(src=`${user.imageUrl}`, style='image-rendering: pixelated;')
         li
           a(href='/logout') Logout
       else
-        li
-          i.nes-icon.google.is-med
-          a(href='/login') Login
-      
+          li
+            i.nes-icon.google.is-med
+            a(href='/login') Login

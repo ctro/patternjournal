@@ -227,6 +227,18 @@ describe("Pattern pages", () => {
       });
   });
 
+  test("UPDATE /patterns/id 404s ", () => {
+    return  request(app)
+    .post(`/patterns/update/666`)
+    .send({
+      name: "demon",
+      color: "poop"
+    })
+    .then(response => {
+      expect(response.statusCode).toBe(404);
+    })
+  });
+
   test("DELETE /patterns works and obeys UserId", () => {
     // Create a one-off pattern for the test
     return db.Pattern.create({

@@ -12,6 +12,19 @@ module.exports = {
     res.redirect("/");
   },
 
+  // 📸 🎇FLASH🎇
+  // Flash messages Middleware via the session
+  flash: function(req, res, next) {
+    // if there's a flash message in the session request, make it available in the response, then delete it
+    if (req.session) {
+      res.locals.flashMessage = req.session.flashMessage;
+      delete req.session.flashMessage;
+      res.locals.flashMotivation = req.session.flashMotivation;
+      delete req.session.flashMotivation;
+    }
+    return next();
+  },
+
   // Middleware to add today.year, month, and day
   addToday: function(req, res, next) {
     // Date is always UTC on server.

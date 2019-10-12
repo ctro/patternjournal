@@ -24,9 +24,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static("public"));
 
-// Our custom middleware
-app.use(helpers.addToday);
-
 // Session - Secure Cookie
 const expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 app.use(
@@ -42,6 +39,10 @@ app.use(
     }
   })
 );
+
+// Our custom middleware
+app.use(helpers.addToday);
+app.use(helpers.flash);
 
 // 🔒🔒🔒 Passport Auth Setup 🔒🔒🔒
 if (process.env.NODE_ENV == "test") {
