@@ -166,6 +166,16 @@ I can enable HTTP/S traffic from the interface. I can SSH from a browser!
 
 Google provides secure SSH from the browser, just use that it's simple and secure.
 
+#### DB access on our tiny prod server
+
+```sh
+sudo -H -u postgres bash
+psql pj_production
+😱
+select * from "Users";
+```
+
+
 ### Deploys
 
 SSH to prod and run `/patternjournal/image/deploy.sh`
