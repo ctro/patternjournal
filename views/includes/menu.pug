@@ -1,17 +1,17 @@
 div.nes-container.with-title.is-rounded(style="margin-top:4em")
   p.title Menu
-    ul.nes-list.is-disc
-      if(user)
+  ul.nes-list.is-disc
+    if(user)
+      li
+        img.nes-avatar.is-rounded.is-medium(src=`${user.imageUrl}`, style='image-rendering: pixelated;')
+        = ` ${user.name} `
+        a(href='/logout') (Logout) 
+      li
+        a(href=`/day/${today.year}/${today.month}/${today.day}`)= `🌄 Today is ${today.year}-${today.month}-${today.day}`
+      li
+        a(href='/patterns') Patterns
+        
+    else
         li
-          img.nes-avatar.is-rounded.is-medium(src=`${user.imageUrl}`, style='image-rendering: pixelated;')
-          = ` ${user.name}`  
-        li
-          a(href=`/day/${today.year}/${today.month}/${today.day}`)= `🌄 ${today.year}-${today.month}-${today.day}`
-        li
-          a(href='/patterns') Patterns
-        li
-          a(href='/logout') Logout
-      else
-          li
-            i.nes-icon.google.is-med
-            a(href='/login') Login
+          i.nes-icon.google.is-med
+          a(href='/login') Login
