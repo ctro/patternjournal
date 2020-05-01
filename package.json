@@ -12,7 +12,9 @@
     "prettify": "./node_modules/.bin/prettier --write '**/*.js' '**/*.md' '**/*.yml' ",
     "loadtest-prod": "./node_modules/.bin/loadtest -c 10 --rps 200 https://patternjournal.app/",
     "benchmark-prod": "./node_modules/.bin/loadtest -c 10 -n 1000  https://patternjournal.app/",
-    "snyk": "./node_modules/.bin/snyk test"
+    "snyk": "./node_modules/.bin/snyk test",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "bulma": "^0.7.5",
@@ -31,14 +33,15 @@
     "pg": "^7.12.1",
     "pug": "^2.0.4",
     "sequelize": "^5.18.1",
-    "sequelize-cli": "^5.5.1"
+    "sequelize-cli": "^5.5.1",
+    "snyk": "^1.316.1"
   },
   "devDependencies": {
     "jest": "^24.9.0",
     "loadtest": "^3.0.8",
     "nodemon": "^1.19.2",
     "prettier": "^1.18.2",
-    "snyk": "^1.231.0",
     "supertest": "^4.0.2"
-  }
+  },
+  "snyk": true
 }
